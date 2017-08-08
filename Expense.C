@@ -13,23 +13,3 @@ Expense::Expense(boost::gregorian::date date,
     _amount(amount)
 {
 }
-
-const date& Expense::getDate() const
-{
-  return _date;
-}
-
-const string& Expense::getCategory() const
-{
-  return _category;
-}
-
-const string& Expense::getComment() const
-{
-  return _comment;
-}
-
-const double Expense::getAmount() const
-{
-  return _amount;
-}

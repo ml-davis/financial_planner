@@ -23,17 +23,3 @@ void Partition::reduceAmount(double deduction)
   _amount -= deduction;
 }
 
-const string& Partition::getDescription() const
-{
-  return _description;
-}
-
-const double Partition::getAmount() const
-{
-  return _amount;
-}
-
-const std::string& Partition::getDueDate() const
-{
-  return _dueDate;
-}

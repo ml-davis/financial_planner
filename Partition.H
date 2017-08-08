@@ -15,11 +15,11 @@ class Partition
 
     void reduceAmount(double deduction);
 
-    const std::string& getDescription() const;
+    inline const std::string& getDescription() const { return _description; }
 
-    const double getAmount() const;
-
-    const std::string& getDueDate() const;
+    inline const std::string& getDueDate() const { return _dueDate; }
+    
+    inline const double getAmount() const { return _amount; }
 
   private:
     std::string      _description;

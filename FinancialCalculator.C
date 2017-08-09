@@ -38,7 +38,7 @@ void FinancialCalculator::addExpense(const string& theDate,
 
 void printLine()
 {
-  for (int i = 0; i < 103; i++)
+  for (int i = 0; i < 108; i++)
   {
     cout << "-";
   }
@@ -55,7 +55,7 @@ void FinancialCalculator::showPartitions()
     cout << format(fmt) % p.first % p.second.asString() << endl;
   }
   printLine();
-  format fmt("%-20s%83.2f");
+  format fmt("%-20s%88.2f");
   cout << format(fmt) % "Total" % _monthlyIncome << endl;
   printLine();
   cout << endl;
@@ -67,7 +67,7 @@ void FinancialCalculator::showExpenses()
   printLine();
   for (auto expense : _expenses)
   {
-    format fmt("%-20s%-20s%-55s%8.2f");
+    format fmt("%-20s%-20s%-60s%8.2f");
     cout << format(fmt) % 
       to_simple_string(expense.getDate()) % 
       expense.getCategory() % 
@@ -99,7 +99,7 @@ void FinancialCalculator::showRemaining()
     cout << format(fmt) % p.first % p.second.asString() % percentRemaining << endl;
   }
   printLine();
-  format fmt("%-20s%83.2f");
+  format fmt("%-20s%88.2f");
   cout << format(fmt) % "Total" % total << endl;
   printLine();
   cout << endl;

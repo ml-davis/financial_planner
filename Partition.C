@@ -1,4 +1,5 @@
 #include "Partition.H" 
+#include <sstream>
 
 using namespace std;
 using namespace boost;
@@ -12,31 +13,35 @@ Partition::Partition(string description,
 {
 }
 
-const string Partition::asString() const
+const string dueDateString(const unsigned short dueDate)
 {
-  string suffix{};
-  switch(_dueDate % 10)
+  if (dueDate == 0)
   {
-    case (1): suffix = "st";
-              break;
-    case (2): suffix = "nd";
-              break;
-    case (3): suffix = "rd";
-              break;
-    default: suffix = "th";
-             break;
+    return "";
   }
 
-  if (_dueDate > 0)
+  stringstream ss;
+
+  ss << dueDate;
+  switch(dueDate % 10)
   {
-    format fmt("%-65sDue:%3d%2s%14.2f");
-    return str(format(fmt) % _description % _dueDate % suffix % _amount);
+    case (1): ss << "st";
+              break;
+    case (2): ss << "nd";
+              break;
+    case (3): ss << "rd";
+              break;
+    default: ss << "th";
+             break;
   }
-  else
-  {
-    format fmt("%-74s%14.2f");
-    return str(format(fmt) % _description % _amount);
-  }
+  
+  return ss.str();
+}
+
+const string Partition::asString() const
+{
+  format fmt("%-65sDue:%5s%14.2f");
+  return str(format(fmt) % _description % dueDateString(_dueDate) % _amount);
 }
 
 void Partition::reduceAmount(double deduction)

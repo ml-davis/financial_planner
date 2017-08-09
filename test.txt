@@ -1,0 +1,67 @@
+{
+	"Groceries": {
+		"description": "Monthly grocery costs",
+		"dueDate": 0,
+		"amount": 400
+	},
+	"Clothing": {
+		"description": "Money put away for new clothes",
+		"dueDate": 0,
+		"amount": 20
+	},
+	"Utilitiies": {
+		"description": "Electricity bill (Hydro QC)",
+		"dueDate": 21,
+		"amount": 60
+	},
+	"Emergency": {
+		"description": "Money put away for unexpected costs",
+		"dueDate": 0,
+		"amount": 50
+	},
+	"Metro": {
+		"description": "Monthly public transportation costs (STM)",
+		"dueDate": 1,
+		"amount": 83
+	},
+	"Rent": {
+		"description": "1601 Boul Angrignon, Apt 902 (Aldo Construction)",
+		"dueDate": 1,
+		"amount": 1420
+	},
+	"Household": {
+		"description": "Money put away to buy stuff for apartment",
+		"dueDate": 0,
+		"amount": 50
+	},
+	"Insurance": {
+		"description": "Tenant insurance. (Aviva - RBC)",
+		"dueDate": 15,
+		"amount": 15.54
+	},
+	"Internet": {
+		"description": "Monthly internet fees (Videotron)",
+		"dueDate": 4,
+		"amount": 71.23
+	},
+	"Bank": {
+		"description": "Monthly bank fees (RBC)",
+		"dueDate": 4,
+		"amount": 10.95
+	},
+	"Debt": {
+		"description": "Paying off credit cards and student loans",
+		"dueDate": 0,
+		"amount": 131.36
+	},
+	"Entertainment": {
+		"description": "Eating out/movies/bar/etc",
+		"dueDate": 0,
+		"amount": 90
+	},
+	"Phones": {
+		"description": "Me and Azin's phone bill (Virgin Mobile)",
+		"dueDate": 14,
+		"amount": 150.18
+	}
+}

@@ -3,6 +3,7 @@
 #include "Expense.H"
 #include "Partition.H"
 #include <boost/date_time/gregorian/gregorian.hpp>
+#include <fstream>
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -26,6 +27,8 @@ class FinancialCalculator
                     const std::string& category,
                     const std::string& comment,
                     const double amount);
+
+    void savePartitions();
 
     void showPartitions();
 

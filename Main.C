@@ -37,14 +37,14 @@ int main()
   fp.addExpense("2017-08-06", "Groceries",      "Bought fruit, milk, dishwasher detergent at Walmart",      46.91);
   fp.addExpense("2017-08-08", "Clothing",       "Bought collar stays for dress shirts [**NEED TRANSFER**]", 20.95);
 
-  fp.showPartitions();
-
-  fp.showExpenses();
-
-  fp.showRemaining();
+  fp.savePartitions();
 
   auto globalEndTime = high_resolution_clock::now();
-
   auto program_duration = duration_cast<microseconds>(globalEndTime - globalStartTime).count();
+
+  fp.showPartitions();
+  fp.showExpenses();
+  fp.showRemaining();
+
   cout << "Total Program Duration = " << program_duration << " microseconds" << endl;
 }

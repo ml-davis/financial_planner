@@ -13,14 +13,14 @@ void FinancialCalculator::addPartition(const string& name,
                                        const string& description,
                                        const double amount)
 {
-  Partition partition(description, "-", amount);
+  Partition partition(description, 0, amount);
   _partitions.insert(pair<string, Partition>(name, partition));
 }
 
 void FinancialCalculator::addPartition(const string& name,
                                        const string& description,
                                        const double amount,
-                                       const string& dueDate) 
+                                       const unsigned short dueDate)
 {
   Partition partition(description, dueDate, amount);
   _partitions.insert(pair<string, Partition>(name, partition));

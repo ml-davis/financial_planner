@@ -8,21 +8,21 @@ class Partition
 {
   public:
     Partition(std::string description, 
-              std::string dueDate,
+              unsigned short dueDate,
               double amount);
 
     const std::string asString() const;
 
     void reduceAmount(double deduction);
 
-    inline const std::string& getDescription() const { return _description; }
+    const inline std::string& getDescription() const { return _description; }
 
-    inline const std::string& getDueDate() const { return _dueDate; }
+    const inline unsigned short getDueDate() const { return _dueDate; }
     
-    inline const double getAmount() const { return _amount; }
+    const inline double getAmount() const { return _amount; }
 
   private:
     std::string      _description;
-    std::string      _dueDate;
+    unsigned short   _dueDate;
     double           _amount;
 };

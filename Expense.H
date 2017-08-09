@@ -11,13 +11,13 @@ class Expense
             std::string comment,
             double amount);
 
-    inline const boost::gregorian::date& getDate() const { return _date; }
+    const inline boost::gregorian::date& getDate() const { return _date; }
 
-    inline const std::string& getCategory() const { return _category; }
+    const inline std::string& getCategory() const { return _category; }
 
-    inline const std::string& getComment() const { return _comment; }
+    const inline std::string& getComment() const { return _comment; }
 
-    inline const double getAmount() const { return _amount; }
+    const inline double getAmount() const { return _amount; }
 
   private:
     boost::gregorian::date _date;

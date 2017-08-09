@@ -11,13 +11,13 @@ int main()
 
   FinancialCalculator fp(2552.26);
 
-  fp.addPartition("Rent",           "1601 Boul Angrignon, Apt 902 (Aldo Construction)",        1420.00,     "1st");
-  fp.addPartition("Metro",          "Monthly public transportation costs (STM)",                 83.00,     "1st");
-  fp.addPartition("Internet",       "Monthly internet fees (Videotron)",                         71.23,     "4th");
-  fp.addPartition("Bank",           "Monthly bank fees (RBC)",                                   10.95,     "4th");
-  fp.addPartition("Phones",         "Me and Azin's phone bill (Virgin Mobile)",                 150.18,    "14th");
-  fp.addPartition("Insurance",      "Tenant insurance. (Aviva - RBC)",                           15.54,    "15th");
-  fp.addPartition("Utilitiies",     "Electricity bill (Hydro QC)",                               60.00,    "21st");
+  fp.addPartition("Rent",           "1601 Boul Angrignon, Apt 902 (Aldo Construction)",        1420.00,         1);
+  fp.addPartition("Metro",          "Monthly public transportation costs (STM)",                 83.00,         1);
+  fp.addPartition("Internet",       "Monthly internet fees (Videotron)",                         71.23,         4);
+  fp.addPartition("Bank",           "Monthly bank fees (RBC)",                                   10.95,         4);
+  fp.addPartition("Phones",         "Me and Azin's phone bill (Virgin Mobile)",                 150.18,        14);
+  fp.addPartition("Insurance",      "Tenant insurance. (Aviva - RBC)",                           15.54,        15);
+  fp.addPartition("Utilitiies",     "Electricity bill (Hydro QC)",                               60.00,        21);
   fp.addPartition("Groceries",      "Monthly grocery costs",                                    400.00           );
   fp.addPartition("Entertainment",  "Eating out/movies/bar/etc",                                 90.00           );
   fp.addPartition("Debt",           "Paying off credit cards and student loans",                131.36           );

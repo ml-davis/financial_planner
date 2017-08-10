@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void IOHandler::savePartitions(unordered_map<string, Partition> partitions)
+void IOHandler::savePartitionsToJSON(unordered_map<string, Partition> partitions)
 {
   ofstream outputStream;
   outputStream.open ("partitions.json");
@@ -30,3 +30,20 @@ void IOHandler::savePartitions(unordered_map<string, Partition> partitions)
   outputStream.close();
 }
 
+void IOHandler::savePartitions(unordered_map<string, Partition> partitions)
+{
+  ofstream outputStream;
+  outputStream.open ("partitions");
+
+  size_t index = 0;
+  for (auto p: partitions)
+  {
+    outputStream << p.first << endl;
+    outputStream << p.second.getDescription() << endl;
+    outputStream << p.second.getDueDate() << endl;
+    outputStream << p.second.getAmount() << endl;
+    outputStream << endl;
+  }
+
+  outputStream.close();
+}

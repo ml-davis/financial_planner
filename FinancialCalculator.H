@@ -2,8 +2,8 @@
 
 #include "Expense.H"
 #include "Partition.H"
+#include "IOHandler.H"
 #include <boost/date_time/gregorian/gregorian.hpp>
-#include <fstream>
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -21,7 +21,6 @@ class FinancialCalculator
                       const std::string& description,
                       const double amount,
                       const unsigned short dueDate);
-
 
     void addExpense(const std::string& date,
                     const std::string& category,

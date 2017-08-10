@@ -47,30 +47,8 @@ void printLine()
 
 void FinancialCalculator::savePartitions()
 {
-  ofstream outputStream;
-  outputStream.open ("test.txt");
-
-  outputStream << "{\n";
-  size_t index = 0;
-  for (auto p: _partitions)
-  {
-    outputStream << "\t\"" << p.first << "\": {\n";
-    outputStream << "\t\t\"description\": \"" << p.second.getDescription() << "\",\n";
-    outputStream << "\t\t\"dueDate\": " << p.second.getDueDate() << ",\n";
-    outputStream << "\t\t\"amount\": " << p.second.getAmount() << "\n";
-
-    if (++index < _partitions.size())
-    {
-      outputStream << "\t},\n";
-    }
-    else
-    {
-      outputStream << "\t}\n";
-    }
-  }
-  outputStream << "}";
-
-  outputStream.close();
+  IOHandler io;
+  io.savePartitions(_partitions);
 }
 
 void FinancialCalculator::showPartitions() 

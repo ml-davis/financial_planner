@@ -92,8 +92,12 @@ void FinancialCalculator::showExpenses()
 
 void FinancialCalculator::showRemaining()
 {
+  // make copies
   double total = _monthlyIncome;
   unordered_map<string, Partition> remaining = _partitions;
+
+  double percentRemaining{};
+
   for (auto expense : _expenses)
   {
     remaining.at(expense.getCategory()).reduceAmount(expense.getAmount());
@@ -104,15 +108,16 @@ void FinancialCalculator::showRemaining()
   printLine();
   for (auto p : remaining)
   {
-    double percentRemaining = 100 * 
-      (p.second.getAmount() / _partitions.at(p.first).getAmount());
+    percentRemaining = 100 * (p.second.getAmount() / _partitions.at(p.first).getAmount());
 
     format fmt("%-20s%-83s%9.1f%%");
     cout << format(fmt) % p.first % p.second.asString() % percentRemaining << endl;
   }
   printLine();
-  format fmt("%-20s%88.2f");
-  cout << format(fmt) % "Total" % total << endl;
+
+  double totalRemaining = 100 * (total / _monthlyIncome);
+  format fmt("%-20s%88.2f%9.1f%%");
+  cout << format(fmt) % "Total" % total % totalRemaining << endl;
   printLine();
   cout << endl;
 }

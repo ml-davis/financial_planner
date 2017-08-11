@@ -22,7 +22,15 @@ const string dueDateString(const unsigned short dueDate)
 
   stringstream ss;
 
+  ss << "Due: ";
+
+  if (dueDate < 10)
+  {
+    ss << " ";
+  }
+
   ss << dueDate;
+
   switch(dueDate % 10)
   {
     case (1): ss << "st";
@@ -40,7 +48,7 @@ const string dueDateString(const unsigned short dueDate)
 
 const string Partition::asString() const
 {
-  format fmt("%-65sDue:%5s%14.2f");
+  format fmt("%-65s%9s%14.2f");
   return str(format(fmt) % _description % dueDateString(_dueDate) % _amount);
 }
 

@@ -51,6 +51,12 @@ void FinancialCalculator::savePartitions()
   io.savePartitions(_partitions);
 }
 
+void FinancialCalculator::loadPartitions()
+{
+  IOHandler io;
+  _partitions = io.loadPartitions();
+}
+
 void FinancialCalculator::showPartitions() 
 {
   cout << "*** Partitions ***" << endl;

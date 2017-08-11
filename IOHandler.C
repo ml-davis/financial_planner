@@ -33,17 +33,57 @@ void IOHandler::savePartitionsToJSON(unordered_map<string, Partition> partitions
 void IOHandler::savePartitions(unordered_map<string, Partition> partitions)
 {
   ofstream outputStream;
-  outputStream.open ("partitions");
+  outputStream.open (_partitionsFile);
 
   size_t index = 0;
   for (auto p: partitions)
   {
+    outputStream << "-" << endl;
     outputStream << p.first << endl;
     outputStream << p.second.getDescription() << endl;
     outputStream << p.second.getDueDate() << endl;
     outputStream << p.second.getAmount() << endl;
-    outputStream << endl;
   }
 
   outputStream.close();
 }
+
+// Partition partition(description, 0, amount);
+// _partitions.insert(pair<string, Partition>(name, partition));
+
+unordered_map<string, Partition> IOHandler::loadPartitions()
+{
+  // TODO: verify types
+
+  unordered_map<string, Partition> map;
+
+  string line;
+  ifstream inputStream(_partitionsFile);
+  if (inputStream.is_open())
+  {
+    while(getline(inputStream, line))
+    {
+      if (line == "-")
+      {
+        getline(inputStream, line);
+        string name{line};
+
+        getline(inputStream, line);
+        string description{line};
+
+        getline(inputStream, line);
+        unsigned short dueDate = stoi(line);
+
+        getline(inputStream, line);
+        double amount = stod(line);
+
+        Partition partition(description, dueDate, amount);
+        map.insert(pair<string, Partition>(name, partition));
+      }
+    }
+    inputStream.close();
+  }
+  // TODO: else -> throw error
+
+  return map;
+ }

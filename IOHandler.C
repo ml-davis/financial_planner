@@ -1,6 +1,7 @@
 #include "IOHandler.H"
 
 using namespace std;
+using namespace boost::gregorian;
 
 void IOHandler::savePartitionsToJSON(unordered_map<string, Partition> partitions)
 {
@@ -90,7 +91,7 @@ unordered_map<string, Partition> IOHandler::loadPartitions()
         unsigned short dueDate = stoi(line);
 
         getline(inputStream, line);
-        double amount = stod(line);
+        double amount{stod(line)};
 
         Partition partition(description, dueDate, amount);
         map.insert(pair<string, Partition>(name, partition));
@@ -101,4 +102,40 @@ unordered_map<string, Partition> IOHandler::loadPartitions()
   // TODO: else -> throw error
 
   return map;
+ }
+
+vector<Expense> IOHandler::loadExpenses()
+{
+  // TODO: verify types
+
+  vector<Expense> expenses;
+
+  string line;
+  ifstream inputStream(_expensesFile);
+  if (inputStream.is_open())
+  {
+    while(getline(inputStream, line))
+    {
+      if (line == "-")
+      {
+        getline(inputStream, line);
+        date date{ from_simple_string(line) };
+
+        getline(inputStream, line);
+        string category{line};
+
+        getline(inputStream, line);
+        string comment{line};
+
+        getline(inputStream, line);
+        double amount{stod(line)};
+
+        expenses.emplace_back(Expense(date, category, comment, amount));
+      }
+    }
+    inputStream.close();
+  }
+  // TODO: else -> throw error
+
+  return expenses;
  }

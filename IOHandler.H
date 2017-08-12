@@ -19,6 +19,8 @@ class IOHandler
 
     std::unordered_map<std::string, Partition> loadPartitions();
 
+    std::vector<Expense> loadExpenses();
+
   private:
     std::string _partitionsFile = "partitions";
     std::string _expensesFile = "expenses";

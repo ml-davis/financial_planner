@@ -33,6 +33,8 @@ class FinancialCalculator
 
     void loadPartitions();
 
+    void loadExpenses();
+
     void showPartitions();
 
     void showExpenses();

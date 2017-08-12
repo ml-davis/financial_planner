@@ -27,24 +27,24 @@ int main()
 
   fp.loadPartitions();
 
-  fp.addExpense("2017-08-01", "Rent",           "Paid rent for August",                                   1420.00);
-  fp.addExpense("2017-08-02", "Metro",          "Got monthly opus pass",                                    83.00);
-  fp.addExpense("2017-08-02", "Entertainment",  "Went to Subway",                                           12.74);
-  fp.addExpense("2017-08-03", "Groceries",      "Went to Costco to get meat",                              140.95);
-  fp.addExpense("2017-08-03", "Emergency",      "Paid Phil for bach. party",                                23.00);
-  fp.addExpense("2017-08-04", "Bank",           "Paid monthly bank fees at RBC",                            10.95);
-  fp.addExpense("2017-08-04", "Emergency",      "Paid Simon for bach. party",                               10.00);
-  fp.addExpense("2017-08-05", "Entertainment",  "Bought icecream with Azin",                                 5.00);
-  fp.addExpense("2017-08-06", "Entertainment",  "Bought lunch for me and Azin at mall",                     29.54);
-  fp.addExpense("2017-08-06", "Groceries",      "Bought fruit, milk, dishwasher detergent at Walmart",      46.91);
-  fp.addExpense("2017-08-08", "Clothing",       "Bought collar stays for dress shirts",                     20.95);
-  fp.addExpense("2017-08-08", "Internet",       "Paid internet bill for August",                            71.23);
+  // fp.addExpense("2017-08-01", "Rent",           "Paid rent for August",                                   1420.00);
+  // fp.addExpense("2017-08-02", "Metro",          "Got monthly opus pass",                                    83.00);
+  // fp.addExpense("2017-08-02", "Entertainment",  "Went to Subway",                                           12.74);
+  // fp.addExpense("2017-08-03", "Groceries",      "Went to Costco to get meat",                              140.95);
+  // fp.addExpense("2017-08-03", "Emergency",      "Paid Phil for bach. party",                                23.00);
+  // fp.addExpense("2017-08-04", "Bank",           "Paid monthly bank fees at RBC",                            10.95);
+  // fp.addExpense("2017-08-04", "Emergency",      "Paid Simon for bach. party",                               10.00);
+  // fp.addExpense("2017-08-05", "Entertainment",  "Bought icecream with Azin",                                 5.00);
+  // fp.addExpense("2017-08-06", "Entertainment",  "Bought lunch for me and Azin at mall",                     29.54);
+  // fp.addExpense("2017-08-06", "Groceries",      "Bought fruit, milk, dishwasher detergent at Walmart",      46.91);
+  // fp.addExpense("2017-08-08", "Clothing",       "Bought collar stays for dress shirts",                     20.95);
+  // fp.addExpense("2017-08-08", "Internet",       "Paid internet bill for August",                            71.23);
 
-  fp.saveExpenses();
+  fp.loadExpenses();
 
-  // fp.showPartitions();
-  // fp.showExpenses();
-  // fp.showRemaining();
+  fp.showPartitions();
+  fp.showExpenses();
+  fp.showRemaining();
 
   auto globalEndTime = high_resolution_clock::now();
   auto program_duration = duration_cast<microseconds>(globalEndTime - globalStartTime).count();

@@ -63,6 +63,12 @@ void FinancialCalculator::loadPartitions()
   _partitions = io.loadPartitions();
 }
 
+void FinancialCalculator::loadExpenses()
+{
+  IOHandler io;
+  _expenses = io.loadExpenses();
+}
+
 void FinancialCalculator::showPartitions() 
 {
   cout << "*** Partitions ***" << endl;

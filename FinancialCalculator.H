@@ -29,6 +29,8 @@ class FinancialCalculator
 
     void savePartitions();
 
+    void saveExpenses();
+
     void loadPartitions();
 
     void showPartitions();

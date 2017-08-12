@@ -40,9 +40,11 @@ int main()
   fp.addExpense("2017-08-08", "Clothing",       "Bought collar stays for dress shirts",                     20.95);
   fp.addExpense("2017-08-08", "Internet",       "Paid internet bill for August",                            71.23);
 
-  fp.showPartitions();
-  fp.showExpenses();
-  fp.showRemaining();
+  fp.saveExpenses();
+
+  // fp.showPartitions();
+  // fp.showExpenses();
+  // fp.showRemaining();
 
   auto globalEndTime = high_resolution_clock::now();
   auto program_duration = duration_cast<microseconds>(globalEndTime - globalStartTime).count();

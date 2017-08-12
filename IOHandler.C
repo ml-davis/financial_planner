@@ -30,7 +30,7 @@ void IOHandler::savePartitionsToJSON(unordered_map<string, Partition> partitions
   outputStream.close();
 }
 
-void IOHandler::savePartitions(unordered_map<string, Partition> partitions)
+void IOHandler::savePartitions(const unordered_map<string, Partition>& partitions)
 {
   ofstream outputStream;
   outputStream.open (_partitionsFile);
@@ -48,8 +48,23 @@ void IOHandler::savePartitions(unordered_map<string, Partition> partitions)
   outputStream.close();
 }
 
-// Partition partition(description, 0, amount);
-// _partitions.insert(pair<string, Partition>(name, partition));
+void IOHandler::saveExpenses(const vector<Expense>& expenses)
+{
+  ofstream outputStream;
+  outputStream.open (_expensesFile);
+
+  size_t index = 0;
+  for (auto e: expenses)
+  {
+    outputStream << "-" << endl;
+    outputStream << e.getDateString() << endl;
+    outputStream << e.getCategory() << endl;
+    outputStream << e.getComment() << endl;
+    outputStream << e.getAmount() << endl;
+  }
+
+  outputStream.close();
+}
 
 unordered_map<string, Partition> IOHandler::loadPartitions()
 {

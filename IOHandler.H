@@ -1,7 +1,8 @@
 #pragma once
 
+#include "Expense.H"
 #include "Partition.H"
-//#include <boost/lexical_cast.hpp>
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -12,10 +13,13 @@ class IOHandler
   public:
     void savePartitionsToJSON(std::unordered_map<std::string, Partition> partitions);
 
-    void savePartitions(std::unordered_map<std::string, Partition> partitions);
+    void savePartitions(const std::unordered_map<std::string, Partition>& partitions);
+
+    void saveExpenses(const std::vector<Expense>& expenses);
 
     std::unordered_map<std::string, Partition> loadPartitions();
 
   private:
     std::string _partitionsFile = "partitions";
+    std::string _expensesFile = "expenses";
 };

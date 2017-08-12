@@ -51,6 +51,12 @@ void FinancialCalculator::savePartitions()
   io.savePartitions(_partitions);
 }
 
+void FinancialCalculator::saveExpenses()
+{
+  IOHandler io;
+  io.saveExpenses(_expenses);
+}
+
 void FinancialCalculator::loadPartitions()
 {
   IOHandler io;

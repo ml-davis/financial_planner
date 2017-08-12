@@ -1,6 +1,6 @@
 #pragma once
 
-#include <boost/date_time/gregorian/gregorian_types.hpp>
+#include <boost/date_time/gregorian/gregorian.hpp>
 #include <string>
 
 class Expense
@@ -10,6 +10,8 @@ class Expense
             std::string category,
             std::string comment,
             double amount);
+
+    const std::string getDateString();
 
     const inline boost::gregorian::date& getDate() const { return _date; }
 

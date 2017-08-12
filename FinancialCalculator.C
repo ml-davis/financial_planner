@@ -7,6 +7,8 @@ using namespace std;
 FinancialCalculator::FinancialCalculator(double monthlyIncome)
   : _monthlyIncome(monthlyIncome)
 {
+  // load partitions and expenses from disk
+  load(); 
 }
 
 void FinancialCalculator::addPartition(const string& name,

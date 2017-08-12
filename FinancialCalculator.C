@@ -13,14 +13,6 @@ FinancialCalculator::FinancialCalculator(double monthlyIncome)
 
 void FinancialCalculator::addPartition(const string& name,
                                        const string& description,
-                                       const double amount)
-{
-  Partition partition(description, 0, amount);
-  _partitions.insert(pair<string, Partition>(name, partition));
-}
-
-void FinancialCalculator::addPartition(const string& name,
-                                       const string& description,
                                        const double amount,
                                        const unsigned short dueDate)
 {
@@ -57,8 +49,8 @@ void FinancialCalculator::save()
 void FinancialCalculator::load()
 {
   IOHandler io;
-  _partitions = io.loadPartitions();
-  _expenses = io.loadExpenses();
+  io.loadPartitions(*this);
+  io.loadExpenses(*this);
 }
 
 void FinancialCalculator::showPartitions() 

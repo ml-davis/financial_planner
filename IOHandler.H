@@ -1,5 +1,6 @@
 #pragma once
 
+#include "FinancialCalculator.H"
 #include "Expense.H"
 #include "Partition.H"
 
@@ -7,6 +8,9 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+
+// forward declaration needed
+class FinancialCalculator;
 
 class IOHandler
 {
@@ -17,9 +21,9 @@ class IOHandler
 
     void saveExpenses(const std::vector<Expense>& expenses);
 
-    std::unordered_map<std::string, Partition> loadPartitions();
+    void loadPartitions(FinancialCalculator& fp);
 
-    std::vector<Expense> loadExpenses();
+    void loadExpenses(FinancialCalculator& fp);
 
   private:
     std::string _partitionsFile = "partitions";

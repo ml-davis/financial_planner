@@ -67,11 +67,9 @@ void IOHandler::saveExpenses(const vector<Expense>& expenses)
   outputStream.close();
 }
 
-unordered_map<string, Partition> IOHandler::loadPartitions()
+void IOHandler::loadPartitions(FinancialCalculator& fp)
 {
   // TODO: verify types
-
-  unordered_map<string, Partition> map;
 
   string line;
   ifstream inputStream(_partitionsFile);
@@ -93,22 +91,18 @@ unordered_map<string, Partition> IOHandler::loadPartitions()
         getline(inputStream, line);
         double amount{stod(line)};
 
-        Partition partition(description, dueDate, amount);
-        map.insert(pair<string, Partition>(name, partition));
+        fp.addPartition(name, description, amount, dueDate);
       }
     }
     inputStream.close();
   }
+  
   // TODO: else -> throw error
-
-  return map;
  }
 
-vector<Expense> IOHandler::loadExpenses()
+void IOHandler::loadExpenses(FinancialCalculator& fp)
 {
   // TODO: verify types
-
-  vector<Expense> expenses;
 
   string line;
   ifstream inputStream(_expensesFile);
@@ -119,7 +113,7 @@ vector<Expense> IOHandler::loadExpenses()
       if (line == "-")
       {
         getline(inputStream, line);
-        date date{ from_simple_string(line) };
+        string date{line};
 
         getline(inputStream, line);
         string category{line};
@@ -130,12 +124,11 @@ vector<Expense> IOHandler::loadExpenses()
         getline(inputStream, line);
         double amount{stod(line)};
 
-        expenses.emplace_back(Expense(date, category, comment, amount));
+        fp.addExpense(date, category, comment, amount);
       }
     }
     inputStream.close();
   }
-  // TODO: else -> throw error
 
-  return expenses;
+  // TODO: else -> throw error
  }

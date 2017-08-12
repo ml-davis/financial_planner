@@ -15,10 +15,6 @@ class FinancialCalculator
     
     void addPartition(const std::string& name,
                       const std::string& description,
-                      const double amount);
-
-    void addPartition(const std::string& name,
-                      const std::string& description,
                       const double amount,
                       const unsigned short dueDate);
 

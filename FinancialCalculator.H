@@ -27,13 +27,9 @@ class FinancialCalculator
                     const std::string& comment,
                     const double amount);
 
-    void savePartitions();
+    void save();
 
-    void saveExpenses();
-
-    void loadPartitions();
-
-    void loadExpenses();
+    void load();
 
     void showPartitions();
 

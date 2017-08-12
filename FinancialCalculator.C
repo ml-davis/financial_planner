@@ -45,27 +45,17 @@ void printLine()
   cout << endl;
 }
 
-void FinancialCalculator::savePartitions()
+void FinancialCalculator::save()
 {
   IOHandler io;
   io.savePartitions(_partitions);
-}
-
-void FinancialCalculator::saveExpenses()
-{
-  IOHandler io;
   io.saveExpenses(_expenses);
 }
 
-void FinancialCalculator::loadPartitions()
+void FinancialCalculator::load()
 {
   IOHandler io;
   _partitions = io.loadPartitions();
-}
-
-void FinancialCalculator::loadExpenses()
-{
-  IOHandler io;
   _expenses = io.loadExpenses();
 }
 

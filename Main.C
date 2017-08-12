@@ -25,8 +25,6 @@ int main()
   // fp.addPartition("Household",      "Money put away to buy stuff for apartment",                 50.00           );
   // fp.addPartition("Emergency",      "Money put away for unexpected costs",                       50.00           );
 
-  fp.loadPartitions();
-
   // fp.addExpense("2017-08-01", "Rent",           "Paid rent for August",                                   1420.00);
   // fp.addExpense("2017-08-02", "Metro",          "Got monthly opus pass",                                    83.00);
   // fp.addExpense("2017-08-02", "Entertainment",  "Went to Subway",                                           12.74);
@@ -40,7 +38,7 @@ int main()
   // fp.addExpense("2017-08-08", "Clothing",       "Bought collar stays for dress shirts",                     20.95);
   // fp.addExpense("2017-08-08", "Internet",       "Paid internet bill for August",                            71.23);
 
-  fp.loadExpenses();
+  fp.load();
 
   fp.showPartitions();
   fp.showExpenses();

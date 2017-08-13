@@ -27,8 +27,6 @@ class FinancialCalculator
 
     void load();
 
-    void showPartitions();
-
     void showExpenses();
 
     void showRemaining();

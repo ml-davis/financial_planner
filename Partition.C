@@ -8,8 +8,9 @@ Partition::Partition(string description,
                      unsigned short dueDate,
                      double amount)
   : _description(description),
+    _dueDate(dueDate),
     _amount(amount),
-    _dueDate(dueDate)
+    _remaining(amount)
 {
 }
 
@@ -21,8 +22,6 @@ const string dueDateString(const unsigned short dueDate)
   }
 
   stringstream ss;
-
-  ss << "Due: ";
 
   if (dueDate < 10)
   {
@@ -48,12 +47,12 @@ const string dueDateString(const unsigned short dueDate)
 
 const string Partition::asString() const
 {
-  format fmt("%-65s%9s%14.2f");
-  return str(format(fmt) % _description % dueDateString(_dueDate) % _amount);
+  format fmt("%-68s%4s%11.2f%11.2f");
+  return str(format(fmt) % _description % dueDateString(_dueDate) % _amount % _remaining);
 }
 
-void Partition::reduceAmount(double deduction)
+void Partition::reduceRemaining(double deduction)
 {
-  _amount -= deduction;
+  _remaining -= deduction;
 }
 

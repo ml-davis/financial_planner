@@ -4,6 +4,7 @@ using namespace boost;
 using namespace boost::gregorian;
 using namespace std;
 
+// round to nearest hundred
 double round(double x)
 {
   x /= 100;
@@ -17,6 +18,7 @@ FinancialCalculator::FinancialCalculator(double monthlyIncome)
   // load partitions and expenses from disk
   load(); 
 
+  // round needed to get rid of floating point rounding errors (really small numbers)
   if (round(_unpartitionedIncome) != 0.00)
   {
     cerr << "You have unpartitioned income: $" << _unpartitionedIncome << endl;
@@ -49,12 +51,13 @@ void FinancialCalculator::addExpense(const string& theDate,
 {
   // TODO: verify if valid date string or not
   Expense expense(from_simple_string(theDate), category, comment, amount);
+  _partitions.at(category).reduceRemaining(amount);
   _expenses.push_back(expense);
 }
 
 void printLine()
 {
-  for (int i = 0; i < 108; i++)
+  for (int i = 0; i < 126; i++)
   {
     cout << "-";
   }
@@ -72,32 +75,18 @@ void FinancialCalculator::load()
 {
   IOHandler io;
   io.loadPartitions(*this);
-  io.loadExpenses(*this);
-}
-
-void FinancialCalculator::showPartitions() 
-{
-  cout << "*** Partitions ***" << endl;
-  printLine();
-  for (auto p : _partitions)
-  {
-    format fmt("%-20s%-100s");
-    cout << format(fmt) % p.first % p.second.asString() << endl;
-  }
-  printLine();
-  format fmt("%-20s%88.2f");
-  cout << format(fmt) % "Total" % _monthlyIncome << endl;
-  printLine();
-  cout << endl;
+  io.loadExpenses(*this); // expenses must be loaded after partitions
 }
 
 void FinancialCalculator::showExpenses()
 {
-  cout << "*** Expenses ***" << endl;
+  format fmt("%-16s%-20s%-82s%8.2f");
+  cout << format(fmt) % "Date" % "Category" % "Comment" % "Amount" << endl;
+  
   printLine();
   for (auto expense : _expenses)
   {
-    format fmt("%-20s%-20s%-60s%8.2f");
+    format fmt("%-16s%-20s%-82s%8.2f");
     cout << format(fmt) % 
       to_simple_string(expense.getDate()) % 
       expense.getCategory() % 
@@ -110,32 +99,21 @@ void FinancialCalculator::showExpenses()
 
 void FinancialCalculator::showRemaining()
 {
-  // make copies
-  double total = _monthlyIncome;
-  unordered_map<string, Partition> remaining = _partitions;
-
   double percentRemaining{};
 
-  for (auto expense : _expenses)
-  {
-    remaining.at(expense.getCategory()).reduceAmount(expense.getAmount());
-    total -= expense.getAmount();
-  }
-
-  cout << "*** Remaining ***" << endl;
+  format fmt("%-20s%-68s%4s%11s%11s%11s");
+  cout << format(fmt) % "Name" % "Description" % "Due" % "Amount" % "Remain"
+    % "Pct" << endl;
   printLine();
-  for (auto p : remaining)
-  {
-    percentRemaining = 100 * (p.second.getAmount() / _partitions.at(p.first).getAmount());
 
-    format fmt("%-20s%-83s%9.1f%%");
+  for (auto p : _partitions)
+  {
+    percentRemaining = 100 * (p.second.getRemaining() / p.second.getAmount());
+
+    format fmt("%-20s%-94s%10.1f%%");
     cout << format(fmt) % p.first % p.second.asString() % percentRemaining << endl;
   }
-  printLine();
 
-  double totalRemaining = 100 * (total / _monthlyIncome);
-  format fmt("%-20s%88.2f%9.1f%%");
-  cout << format(fmt) % "Total" % total % totalRemaining << endl;
   printLine();
   cout << endl;
 }

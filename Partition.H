@@ -13,7 +13,7 @@ class Partition
 
     const std::string asString() const;
 
-    void reduceAmount(double deduction);
+    void reduceRemaining(double deduction);
 
     const inline std::string& getDescription() const { return _description; }
 
@@ -21,8 +21,11 @@ class Partition
     
     const inline double getAmount() const { return _amount; }
 
+    const inline double getRemaining() const { return _remaining; }
+
   private:
     std::string      _description;
     unsigned short   _dueDate;
     double           _amount;
+    double           _remaining;
 };

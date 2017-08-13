@@ -55,7 +55,7 @@ void FinancialCalculator::viewExpenses()
 void FinancialCalculator::viewRemaining()
 {
   View v;
-  v.printRemaining(_partitions);
+  v.printRemaining(_partitions, _monthlyIncome);
 }
 
 void FinancialCalculator::verifyPartitions()

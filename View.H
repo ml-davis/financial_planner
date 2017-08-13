@@ -12,6 +12,7 @@ class View
   public:
     void printExpenses(const std::vector<Expense>& expenses);
 
-    void printRemaining(const std::unordered_map<std::string, Partition>& partitions);
+    void printRemaining(const std::unordered_map<std::string, Partition>& partitions,
+                        double monthlyIncome);
 
 };

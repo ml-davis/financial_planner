@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FinancialCalculator.H"
+#include "FinancialPlanner.H"
 #include "Expense.H"
 #include "Partition.H"
 
@@ -24,6 +24,6 @@ class IOHandler
     void loadExpenses(FinancialCalculator& fp);
 
   private:
-    std::string _partitionsFile = "partitions";
-    std::string _expensesFile = "expenses";
+    std::string _partitionsFile = "io/partitions";
+    std::string _expensesFile = "io/expenses";
 };

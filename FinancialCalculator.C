@@ -4,26 +4,12 @@ using namespace boost;
 using namespace boost::gregorian;
 using namespace std;
 
-// round to nearest hundred
-double round(double x)
-{
-  x /= 100;
-  return floor(x + 0.5) * 100;
-}
-
 FinancialCalculator::FinancialCalculator(double monthlyIncome)
-  : _monthlyIncome(monthlyIncome),
-    _unpartitionedIncome(monthlyIncome)
+  : _monthlyIncome(monthlyIncome)
 {
   // load partitions and expenses from disk
   load(); 
-
-  // round needed to get rid of floating point rounding errors (really small numbers)
-  if (round(_unpartitionedIncome) != 0.00)
-  {
-    cerr << "You have unpartitioned income: $" << _unpartitionedIncome << endl;
-    exit(1);
-  }
+  verifyPartitions();
 }
 
 void FinancialCalculator::addPartition(const string& name,
@@ -31,37 +17,19 @@ void FinancialCalculator::addPartition(const string& name,
                                        const double amount,
                                        const unsigned short dueDate)
 {
-  if ((_unpartitionedIncome - amount) >= 0)
-  {
-    Partition partition(description, dueDate, amount);
-    _partitions.insert(pair<string, Partition>(name, partition));
-    _unpartitionedIncome -= amount;
-  }
-  else
-  {
-    cerr << "Insufficient Funds: " << endl;
-    exit(1);
-  }
+  Partition partition(description, dueDate, amount);
+  _partitions.insert(pair<string, Partition>(name, partition));
 }
 
 void FinancialCalculator::addExpense(const string& theDate,
                                      const string& category,
-                                     const string& comment,
+                                     const string& description,
                                      const double amount)
 {
   // TODO: verify if valid date string or not
-  Expense expense(from_simple_string(theDate), category, comment, amount);
-  _partitions.at(category).reduceRemaining(amount);
+  Expense expense(from_simple_string(theDate), category, description, amount);
+  _partitions.at(category).reduceAmountRemaining(amount);
   _expenses.push_back(expense);
-}
-
-void printLine()
-{
-  for (int i = 0; i < 126; i++)
-  {
-    cout << "-";
-  }
-  cout << endl;
 }
 
 void FinancialCalculator::save()
@@ -78,42 +46,30 @@ void FinancialCalculator::load()
   io.loadExpenses(*this); // expenses must be loaded after partitions
 }
 
-void FinancialCalculator::showExpenses()
+void FinancialCalculator::viewExpenses()
 {
-  format fmt("%-16s%-20s%-82s%8.2f");
-  cout << format(fmt) % "Date" % "Category" % "Comment" % "Amount" << endl;
-  
-  printLine();
-  for (auto expense : _expenses)
-  {
-    format fmt("%-16s%-20s%-82s%8.2f");
-    cout << format(fmt) % 
-      to_simple_string(expense.getDate()) % 
-      expense.getCategory() % 
-      expense.getComment() % 
-      expense.getAmount() << endl;
-  }
-  printLine();
-  cout << endl;
+  View v;
+  v.printExpenses(_expenses);
 }
 
-void FinancialCalculator::showRemaining()
+void FinancialCalculator::viewRemaining()
 {
-  double percentRemaining{};
+  View v;
+  v.printRemaining(_partitions);
+}
 
-  format fmt("%-20s%-68s%4s%11s%11s%11s");
-  cout << format(fmt) % "Name" % "Description" % "Due" % "Amount" % "Remain"
-    % "Pct" << endl;
-  printLine();
-
-  for (auto p : _partitions)
+void FinancialCalculator::verifyPartitions()
+{
+  double sum = 0;
+  for (auto p: _partitions)
   {
-    percentRemaining = 100 * (p.second.getRemaining() / p.second.getAmount());
-
-    format fmt("%-20s%-94s%10.1f%%");
-    cout << format(fmt) % p.first % p.second.asString() % percentRemaining << endl;
+    sum += p.second.getAmountReserved();
   }
 
-  printLine();
-  cout << endl;
+  if (sum != _monthlyIncome)
+  {
+    cerr << "Partitioned income does not equal monthly income!\n"
+      << sum << " != " << _monthlyIncome << endl;
+    exit(1);
+  }
 }

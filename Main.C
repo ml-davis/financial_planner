@@ -1,4 +1,5 @@
 #include "FinancialCalculator.H"
+
 #include <chrono>
 
 using namespace std;
@@ -13,8 +14,8 @@ int main()
   auto globalEndTime = high_resolution_clock::now();
   auto program_duration = duration_cast<microseconds>(globalEndTime - globalStartTime).count();
 
-  fp.showExpenses();
-  fp.showRemaining();
+  cout << "Program Setup = " << program_duration << " microseconds" << endl << endl;
 
-  cout << "Total Program Duration = " << program_duration << " microseconds" << endl;
+  fp.viewExpenses();
+  fp.viewRemaining();
 }

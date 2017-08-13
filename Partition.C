@@ -2,35 +2,34 @@
 #include <sstream>
 
 using namespace std;
-using namespace boost;
 
 Partition::Partition(string description,
                      unsigned short dueDate,
-                     double amount)
+                     double amountReserved)
   : _description(description),
     _dueDate(dueDate),
-    _amount(amount),
-    _remaining(amount)
+    _amountReserved(amountReserved),
+    _amountRemaining(amountReserved)
 {
 }
 
-const string dueDateString(const unsigned short dueDate)
+const string Partition::dueDateString()
 {
-  if (dueDate == 0)
+  if (_dueDate == 0)
   {
     return "";
   }
 
   stringstream ss;
 
-  if (dueDate < 10)
+  if (_dueDate < 10)
   {
     ss << " ";
   }
 
-  ss << dueDate;
+  ss << _dueDate;
 
-  switch(dueDate % 10)
+  switch(_dueDate % 10)
   {
     case (1): ss << "st";
               break;
@@ -45,14 +44,8 @@ const string dueDateString(const unsigned short dueDate)
   return ss.str();
 }
 
-const string Partition::asString() const
+void Partition::reduceAmountRemaining(double deduction)
 {
-  format fmt("%-68s%4s%11.2f%11.2f");
-  return str(format(fmt) % _description % dueDateString(_dueDate) % _amount % _remaining);
-}
-
-void Partition::reduceRemaining(double deduction)
-{
-  _remaining -= deduction;
+  _amountRemaining -= deduction;
 }
 

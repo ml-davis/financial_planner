@@ -5,12 +5,12 @@ using namespace boost::gregorian;
 
 Expense::Expense(date date,
                  string category,
-                 string comment,
-                 double amount)
+                 string description,
+                 double cost)
   : _date(date),
     _category(category),
-    _comment(comment),
-    _amount(amount)
+    _description(description),
+    _cost(cost)
 {
 }
 

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <boost/format.hpp>
 #include <sstream>
 #include <string>
 
@@ -9,23 +8,23 @@ class Partition
   public:
     Partition(std::string description, 
               unsigned short dueDate,
-              double amount);
+              double amountReserved);
 
-    const std::string asString() const;
-
-    void reduceRemaining(double deduction);
+    void reduceAmountRemaining(double deduction);
 
     const inline std::string& getDescription() const { return _description; }
 
+    const std::string dueDateString();
+
     const inline unsigned short getDueDate() const { return _dueDate; }
     
-    const inline double getAmount() const { return _amount; }
+    const inline double getAmountReserved() const { return _amountReserved; }
 
-    const inline double getRemaining() const { return _remaining; }
+    const inline double getAmountRemaining() const { return _amountRemaining; }
 
   private:
     std::string      _description;
     unsigned short   _dueDate;
-    double           _amount;
-    double           _remaining;
+    double           _amountReserved;
+    double           _amountRemaining;
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <boost/date_time/gregorian/gregorian.hpp>
+
 #include <string>
 
 class Expense
@@ -8,8 +9,8 @@ class Expense
   public:
     Expense(boost::gregorian::date date,
             std::string category,
-            std::string comment,
-            double amount);
+            std::string description,
+            double cost);
 
     const std::string getDateString();
 
@@ -17,13 +18,13 @@ class Expense
 
     const inline std::string& getCategory() const { return _category; }
 
-    const inline std::string& getComment() const { return _comment; }
+    const inline std::string& getDescription() const { return _description; }
 
-    const inline double getAmount() const { return _amount; }
+    const inline double getCost() const { return _cost; }
 
   private:
     boost::gregorian::date _date;
     std::string _category;
-    std::string _comment;
-    double _amount;
+    std::string _description;
+    double _cost;
 };

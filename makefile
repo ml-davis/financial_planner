@@ -1,2 +1,2 @@
 all:
-	g++ Expense.C FinancialCalculator.C Partition.C IOHandler.C Main.C -lboost_date_time -o run
+	g++ Expense.C Partition.C IOHandler.C View.C FinancialCalculator.C Main.C -lboost_date_time -o run

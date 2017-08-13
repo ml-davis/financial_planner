@@ -15,7 +15,7 @@ void IOHandler::savePartitions(const unordered_map<string, Partition>& partition
     outputStream << p.first << endl;
     outputStream << p.second.getDescription() << endl;
     outputStream << p.second.getDueDate() << endl;
-    outputStream << p.second.getAmount() << endl;
+    outputStream << p.second.getAmountReserved() << endl;
   }
 
   outputStream.close();
@@ -32,8 +32,8 @@ void IOHandler::saveExpenses(const vector<Expense>& expenses)
     outputStream << "-" << endl;
     outputStream << e.getDateString() << endl;
     outputStream << e.getCategory() << endl;
-    outputStream << e.getComment() << endl;
-    outputStream << e.getAmount() << endl;
+    outputStream << e.getDescription() << endl;
+    outputStream << e.getCost() << endl;
   }
 
   outputStream.close();
@@ -61,9 +61,9 @@ void IOHandler::loadPartitions(FinancialCalculator& fp)
         unsigned short dueDate = stoi(line);
 
         getline(inputStream, line);
-        double amount{stod(line)};
+        double amountReserved{stod(line)};
 
-        fp.addPartition(name, description, amount, dueDate);
+        fp.addPartition(name, description, amountReserved, dueDate);
       }
     }
     inputStream.close();
@@ -91,12 +91,12 @@ void IOHandler::loadExpenses(FinancialCalculator& fp)
         string category{line};
 
         getline(inputStream, line);
-        string comment{line};
+        string description{line};
 
         getline(inputStream, line);
-        double amount{stod(line)};
+        double cost{stod(line)};
 
-        fp.addExpense(date, category, comment, amount);
+        fp.addExpense(date, category, description, cost);
       }
     }
     inputStream.close();

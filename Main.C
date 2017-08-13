@@ -6,13 +6,12 @@ using namespace std::chrono;
 
 int main()
 {
-
   auto globalStartTime = high_resolution_clock::now();
 
   FinancialCalculator fp(2552.26);
 
-  fp.showPartitions();
-  fp.showExpenses();
+//  fp.showPartitions();
+//  fp.showExpenses();
   fp.showRemaining();
 
   auto globalEndTime = high_resolution_clock::now();

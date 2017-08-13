@@ -4,11 +4,24 @@ using namespace boost;
 using namespace boost::gregorian;
 using namespace std;
 
+double round(double x)
+{
+  x /= 100;
+  return floor(x + 0.5) * 100;
+}
+
 FinancialCalculator::FinancialCalculator(double monthlyIncome)
-  : _monthlyIncome(monthlyIncome)
+  : _monthlyIncome(monthlyIncome),
+    _unpartitionedIncome(monthlyIncome)
 {
   // load partitions and expenses from disk
   load(); 
+
+  if (round(_unpartitionedIncome) != 0.00)
+  {
+    cerr << "You have unpartitioned income: $" << _unpartitionedIncome << endl;
+    exit(1);
+  }
 }
 
 void FinancialCalculator::addPartition(const string& name,
@@ -16,8 +29,17 @@ void FinancialCalculator::addPartition(const string& name,
                                        const double amount,
                                        const unsigned short dueDate)
 {
-  Partition partition(description, dueDate, amount);
-  _partitions.insert(pair<string, Partition>(name, partition));
+  if ((_unpartitionedIncome - amount) >= 0)
+  {
+    Partition partition(description, dueDate, amount);
+    _partitions.insert(pair<string, Partition>(name, partition));
+    _unpartitionedIncome -= amount;
+  }
+  else
+  {
+    cerr << "Insufficient Funds: " << endl;
+    exit(1);
+  }
 }
 
 void FinancialCalculator::addExpense(const string& theDate,

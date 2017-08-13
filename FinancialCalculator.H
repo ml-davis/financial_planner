@@ -35,6 +35,7 @@ class FinancialCalculator
 
   private:
     double                                      _monthlyIncome;
+    double                                      _unpartitionedIncome;
     std::unordered_map<std::string, Partition>  _partitions;
     std::vector<Expense>                        _expenses;
 };

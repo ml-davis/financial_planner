@@ -7,7 +7,7 @@ class Partition
 {
   public:
     Partition(std::string description, 
-              unsigned short dueDate,
+              int dueDate,
               double amountReserved);
 
     void reduceAmountRemaining(double deduction);
@@ -16,7 +16,7 @@ class Partition
 
     const std::string dueDateString();
 
-    const inline unsigned short getDueDate() const { return _dueDate; }
+    const inline int getDueDate() const { return _dueDate; }
     
     const inline double getAmountReserved() const { return _amountReserved; }
 
@@ -24,7 +24,7 @@ class Partition
 
   private:
     std::string      _description;
-    unsigned short   _dueDate;
+    int              _dueDate;
     double           _amountReserved;
     double           _amountRemaining;
 };

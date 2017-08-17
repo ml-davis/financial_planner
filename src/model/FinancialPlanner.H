@@ -3,7 +3,6 @@
 #include "Expense.H"
 #include "Partition.H"
 #include "IOHandler.H"
-#include "View.H"
 
 #include <boost/date_time/gregorian/gregorian.hpp>
 
@@ -11,15 +10,17 @@
 #include <unordered_map>
 #include <vector>
 
-class FinancialCalculator
+class FinancialPlanner
 {
   public:
-    FinancialCalculator(double monthlyIncome);
+    FinancialPlanner();
+
+    FinancialPlanner(double monthlyIncome);
     
     void addPartition(const std::string& name,
                       const std::string& description,
                       const double amount,
-                      const unsigned short dueDate);
+                      const int dueDate);
 
     void addExpense(const std::string& date,
                     const std::string& category,
@@ -30,9 +31,20 @@ class FinancialCalculator
 
     void load();
 
-    void viewExpenses();
+    const inline double getMonthlyIncome() const
+    {
+      return _monthlyIncome;
+    }
 
-    void viewRemaining();
+    const inline std::unordered_map<std::string, Partition>& getPartitions() const
+    {
+      return _partitions;
+    }
+
+    const inline std::vector<Expense>& getExpenses() const
+    {
+      return _expenses;
+    }
 
   private:
     double                                      _monthlyIncome;

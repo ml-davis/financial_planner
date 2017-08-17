@@ -9,8 +9,8 @@
 #include <string>
 #include <unordered_map>
 
-// forward declaration needed
-class FinancialCalculator;
+// forward declaration needed due to circular dependency
+class FinancialPlanner;
 
 class IOHandler
 {
@@ -19,11 +19,11 @@ class IOHandler
 
     void saveExpenses(const std::vector<Expense>& expenses);
 
-    void loadPartitions(FinancialCalculator& fp);
+    void loadPartitions(FinancialPlanner& fp);
 
-    void loadExpenses(FinancialCalculator& fp);
+    void loadExpenses(FinancialPlanner& fp);
 
   private:
-    std::string _partitionsFile = "io/partitions";
-    std::string _expensesFile = "io/expenses";
+    const std::string _partitionsFile{"io/partitions"};
+    const std::string _expensesFile{"io/expenses"};
 };

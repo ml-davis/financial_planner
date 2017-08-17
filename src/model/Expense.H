@@ -12,7 +12,7 @@ class Expense
             std::string description,
             double cost);
 
-    const std::string getDateString();
+    const inline std::string getDateString() { return to_simple_string(_date); }
 
     const inline boost::gregorian::date& getDate() const { return _date; }
 

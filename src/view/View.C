@@ -12,7 +12,12 @@ void printLine()
   cout << endl;
 }
 
-void View::printExpenses(const vector<Expense>& expenses)
+View::View()
+{
+  _financialPlanner = FinancialPlanner(2552.26);
+}
+
+void View::printExpenses()
 {
   double sum{0};
 
@@ -20,7 +25,7 @@ void View::printExpenses(const vector<Expense>& expenses)
   cout << format(fmt) % "Date" % "Category" % "Description" % "Cost" << endl;
   printLine();
 
-  for (auto expense : expenses)
+  for (auto expense : _financialPlanner.getExpenses())
   {
     fmt = format("%-16s%-20s%-82s%8.2f");
     cout << format(fmt) % 
@@ -40,8 +45,7 @@ void View::printExpenses(const vector<Expense>& expenses)
   cout << endl;
 }
 
-void View::printRemaining(const unordered_map<string, Partition>& partitions,
-                          double monthlyIncome)
+void View::printRemaining()
 {
   double totalRemaining{};
   double percentRemaining{};
@@ -51,7 +55,7 @@ void View::printRemaining(const unordered_map<string, Partition>& partitions,
     % "Pct" << endl;
   printLine();
 
-  for (auto p : partitions)
+  for (auto p : _financialPlanner.getPartitions())
   {
     percentRemaining = 100 * 
       (p.second.getAmountRemaining() / p.second.getAmountReserved());
@@ -70,6 +74,7 @@ void View::printRemaining(const unordered_map<string, Partition>& partitions,
   printLine();
 
   fmt = format("%-92s%11.2f%11.2f%11.1f%%");
+  double monthlyIncome{_financialPlanner.getMonthlyIncome()};
   cout << format(fmt) % "Total" % monthlyIncome % totalRemaining % 
     (100 * (totalRemaining / monthlyIncome)) << endl;
   printLine();

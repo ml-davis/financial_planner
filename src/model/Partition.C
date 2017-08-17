@@ -4,7 +4,7 @@
 using namespace std;
 
 Partition::Partition(string description,
-                     unsigned short dueDate,
+                     int dueDate,
                      double amountReserved)
   : _description(description),
     _dueDate(dueDate),

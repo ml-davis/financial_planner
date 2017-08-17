@@ -14,7 +14,3 @@ Expense::Expense(date date,
 {
 }
 
-const string Expense::getDateString()
-{
-  return to_simple_string(_date);
-}

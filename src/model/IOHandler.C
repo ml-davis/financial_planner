@@ -6,9 +6,8 @@ using namespace boost::gregorian;
 void IOHandler::savePartitions(const unordered_map<string, Partition>& partitions)
 {
   ofstream outputStream;
-  outputStream.open (_partitionsFile);
+  outputStream.open(_partitionsFile);
 
-  size_t index = 0;
   for (auto p: partitions)
   {
     outputStream << "-" << endl;
@@ -26,7 +25,6 @@ void IOHandler::saveExpenses(const vector<Expense>& expenses)
   ofstream outputStream;
   outputStream.open (_expensesFile);
 
-  size_t index = 0;
   for (auto e: expenses)
   {
     outputStream << "-" << endl;
@@ -39,7 +37,7 @@ void IOHandler::saveExpenses(const vector<Expense>& expenses)
   outputStream.close();
 }
 
-void IOHandler::loadPartitions(FinancialCalculator& fp)
+void IOHandler::loadPartitions(FinancialPlanner& fp)
 {
   // TODO: verify types
 
@@ -58,7 +56,7 @@ void IOHandler::loadPartitions(FinancialCalculator& fp)
         string description{line};
 
         getline(inputStream, line);
-        unsigned short dueDate = stoi(line);
+        int dueDate{stoi(line)};
 
         getline(inputStream, line);
         double amountReserved{stod(line)};
@@ -72,7 +70,7 @@ void IOHandler::loadPartitions(FinancialCalculator& fp)
   // TODO: else -> throw error
  }
 
-void IOHandler::loadExpenses(FinancialCalculator& fp)
+void IOHandler::loadExpenses(FinancialPlanner& fp)
 {
   // TODO: verify types
 

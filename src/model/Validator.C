@@ -68,3 +68,17 @@ const date Validator::validateDate(const string& dateString)
 
   return date;
 }
+
+const string Validator::validateCategory(const string& categoryString,
+                                       const bool isCategory)
+{
+  if (!isCategory)
+  {
+    cout << "Error: Received invalid category" << endl;
+    cout << "Category for expense must exist inside partitions" << endl;
+    cout << "Category received = " << categoryString << endl;
+    exit(1);
+  } 
+  
+  return categoryString;
+}

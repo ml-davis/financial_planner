@@ -82,13 +82,13 @@ void IOHandler::loadExpenses(FinancialPlanner& fp)
         date date {Validator::validateDate(line)};
 
         getline(inputStream, line);
-        string category{line};
+        string category {Validator::validateCategory(line, fp.hasPartition(line))};
 
         getline(inputStream, line);
         string description{line};
 
         getline(inputStream, line);
-        double cost{Validator::validateDollarAmount(line)};
+        double cost {Validator::validateDollarAmount(line)};
 
         fp.addExpense(date, category, description, cost);
       }

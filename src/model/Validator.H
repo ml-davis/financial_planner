@@ -15,5 +15,8 @@ class Validator
     const static double validateDollarAmount(const std::string& dollarAmountString);
 
     const static boost::gregorian::date validateDate(const std::string& dateString);
+
+    const static std::string validateCategory(const std::string& categoryString,
+                                         const bool isCategory);
 };
 

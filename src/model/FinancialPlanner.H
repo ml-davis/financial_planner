@@ -22,7 +22,7 @@ class FinancialPlanner
                       const double amount,
                       const int dueDate);
 
-    void addExpense(const std::string& date,
+    void addExpense(const boost::gregorian::date& date,
                     const std::string& category,
                     const std::string& description,
                     const double amount);
@@ -30,6 +30,8 @@ class FinancialPlanner
     void save();
 
     void load();
+
+    const bool hasPartition(std::string name);
 
     const inline double getMonthlyIncome() const
     {

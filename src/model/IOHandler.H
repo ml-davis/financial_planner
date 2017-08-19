@@ -3,6 +3,7 @@
 #include "FinancialPlanner.H"
 #include "Expense.H"
 #include "Partition.H"
+#include "Validator.H"
 
 #include <fstream>
 #include <iostream>

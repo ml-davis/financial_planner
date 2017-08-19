@@ -25,13 +25,12 @@ void FinancialPlanner::addPartition(const string& name,
   _partitions.insert(pair<string, Partition>(name, partition));
 }
 
-void FinancialPlanner::addExpense(const string& theDate,
+void FinancialPlanner::addExpense(const date& theDate,
                                   const string& category,
                                   const string& description,
                                   const double amount)
 {
-  // TODO: verify if valid date string or not
-  Expense expense(from_simple_string(theDate), category, description, amount);
+  Expense expense(theDate, category, description, amount);
   _partitions.at(category).reduceAmountRemaining(amount);
   _expenses.push_back(expense);
 }
@@ -48,6 +47,11 @@ void FinancialPlanner::load()
   IOHandler io;
   io.loadPartitions(*this);
   io.loadExpenses(*this); // expenses must be loaded after partitions
+}
+
+const bool FinancialPlanner::hasPartition(string name)
+{
+  return _partitions.find(name) != _partitions.end();
 }
 
 void FinancialPlanner::verifyPartitions()

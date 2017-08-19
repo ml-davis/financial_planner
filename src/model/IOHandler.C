@@ -39,8 +39,6 @@ void IOHandler::saveExpenses(const vector<Expense>& expenses)
 
 void IOHandler::loadPartitions(FinancialPlanner& fp)
 {
-  // TODO: verify types
-
   string line;
   ifstream inputStream(_partitionsFile);
   if (inputStream.is_open())
@@ -50,16 +48,16 @@ void IOHandler::loadPartitions(FinancialPlanner& fp)
       if (line == "-")
       {
         getline(inputStream, line);
-        string name{line};
+        string name {line};
 
         getline(inputStream, line);
-        string description{line};
+        string description {line};
 
         getline(inputStream, line);
-        int dueDate{stoi(line)};
+        int dueDate {Validator::validateDueDate(line)};
 
         getline(inputStream, line);
-        double amountReserved{stod(line)};
+        double amountReserved {Validator::validateDollarAmount(line)};
 
         fp.addPartition(name, description, amountReserved, dueDate);
       }
@@ -72,8 +70,6 @@ void IOHandler::loadPartitions(FinancialPlanner& fp)
 
 void IOHandler::loadExpenses(FinancialPlanner& fp)
 {
-  // TODO: verify types
-
   string line;
   ifstream inputStream(_expensesFile);
   if (inputStream.is_open())
@@ -83,7 +79,7 @@ void IOHandler::loadExpenses(FinancialPlanner& fp)
       if (line == "-")
       {
         getline(inputStream, line);
-        string date{line};
+        date date {Validator::validateDate(line)};
 
         getline(inputStream, line);
         string category{line};
@@ -92,7 +88,7 @@ void IOHandler::loadExpenses(FinancialPlanner& fp)
         string description{line};
 
         getline(inputStream, line);
-        double cost{stod(line)};
+        double cost{Validator::validateDollarAmount(line)};
 
         fp.addExpense(date, category, description, cost);
       }

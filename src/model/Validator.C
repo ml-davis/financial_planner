@@ -70,7 +70,7 @@ const date Validator::validateDate(const string& dateString)
 }
 
 const string Validator::validateCategory(const string& categoryString,
-                                       const bool isCategory)
+                                         const bool isCategory)
 {
   if (!isCategory)
   {
@@ -80,5 +80,39 @@ const string Validator::validateCategory(const string& categoryString,
     exit(1);
   } 
   
+  return categoryString;
+}
+
+const bool isEmpty(const std::string& str)
+{
+  for (char c: str)
+  {
+    if (c != ' ')
+    {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+const string Validator::validateNewCategory(const string& categoryString,
+                                            const bool isCategory)
+{
+  if (isEmpty(categoryString))
+  {
+    cout << "Error: Category in partitions was left blank" << endl;
+    cout << "You must create a name for your category" << endl;
+    exit(1);
+  }
+
+  if (isCategory)
+  {
+    cout << "Error: Received a duplicate partition" << endl;
+    cout << "Tried to create a partition with the same name more than once" << endl;
+    cout << "Partition received = " << categoryString << endl;
+    exit(1);
+  }
+
   return categoryString;
 }

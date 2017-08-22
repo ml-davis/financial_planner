@@ -48,7 +48,7 @@ void IOHandler::loadPartitions(FinancialPlanner& fp)
       if (line == "-")
       {
         getline(inputStream, line);
-        string name {line};
+        string category {Validator::validateNewCategory(line, fp.hasPartition(line))};
 
         getline(inputStream, line);
         string description {line};
@@ -59,13 +59,17 @@ void IOHandler::loadPartitions(FinancialPlanner& fp)
         getline(inputStream, line);
         double amountReserved {Validator::validateDollarAmount(line)};
 
-        fp.addPartition(name, description, amountReserved, dueDate);
+        fp.addPartition(category, description, amountReserved, dueDate);
+      }
+      else
+      {
+        cout << "Invalid formatting in partitions file" << endl;
+        exit(1);
       }
     }
+
     inputStream.close();
   }
-  
-  // TODO: else -> throw error
  }
 
 void IOHandler::loadExpenses(FinancialPlanner& fp)
@@ -92,9 +96,12 @@ void IOHandler::loadExpenses(FinancialPlanner& fp)
 
         fp.addExpense(date, category, description, cost);
       }
+      else
+      {
+        cout << "Invalid formatting of expenses file" << endl;
+        exit(1);
+      }
     }
     inputStream.close();
   }
-
-  // TODO: else -> throw error
  }

@@ -17,6 +17,9 @@ class Validator
     const static boost::gregorian::date validateDate(const std::string& dateString);
 
     const static std::string validateCategory(const std::string& categoryString,
-                                         const bool isCategory);
+                                              const bool isCategory);
+
+    const static std::string validateNewCategory(const std::string& categoryString,
+                                                 const bool isCategory);
 };
 

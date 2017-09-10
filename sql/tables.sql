@@ -19,3 +19,11 @@ CREATE TABLE savings(
   category_id INT REFERENCES partitions(partition_id),
   amount DECIMAL(10, 2)
 );
+
+CREATE TABLE income(
+  income_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(25),
+  description VARCHAR(100),
+  date DATE
+);
+

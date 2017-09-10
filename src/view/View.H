@@ -15,6 +15,8 @@ class View
 
     void printRemaining();
 
+    void changeDate(const std::string& date);
+
   private:
     // TODO: should be pointer to remove default constructor
     FinancialPlanner _financialPlanner;

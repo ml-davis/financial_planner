@@ -12,7 +12,7 @@ FinancialPlanner::FinancialPlanner(const double monthlyIncome, const string& dat
   : _monthlyIncome(monthlyIncome)
 {
   // load partitions and expenses from disk
-  load(from_simple_string(date)); 
+  load(date);
   verifyPartitions();
 }
 
@@ -35,8 +35,15 @@ void FinancialPlanner::addExpense(const date& theDate,
   _expenses.push_back(expense);
 }
 
-void FinancialPlanner::load(const date& date)
+void FinancialPlanner::load(const string& dateString)
 {
+  // remove all current data from "this"
+  reset();
+
+  date date { from_simple_string(dateString) };
+
+  // TODO: only reset if not current date
+
   int month { date.month() };
   int year { date.year() };
 
@@ -63,4 +70,10 @@ void FinancialPlanner::verifyPartitions()
       << sum << " != " << _monthlyIncome << endl;
     exit(1);
   }
+}
+
+void FinancialPlanner::reset()
+{
+  _partitions.clear();
+  _expenses.clear();
 }

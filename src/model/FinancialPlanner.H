@@ -16,7 +16,7 @@ class FinancialPlanner
     FinancialPlanner();
 
     FinancialPlanner(const double monthlyIncome, const std::string& date);
-    
+
     void addPartition(const std::string& name,
                       const std::string& description,
                       const double amount,
@@ -27,7 +27,7 @@ class FinancialPlanner
                     const std::string& description,
                     const double amount);
 
-    void load(const boost::gregorian::date& date);
+    void load(const std::string& dateString);
 
     const bool hasPartition(std::string name);
 
@@ -52,4 +52,5 @@ class FinancialPlanner
     std::vector<Expense>                        _expenses;
 
     void verifyPartitions();
+    void reset();
 };

@@ -77,3 +77,7 @@ void View::printRemaining()
   printLine();
 }
 
+void View::changeDate(const string& date)
+{
+  _financialPlanner.load(date);
+}

@@ -3,8 +3,7 @@ CREATE TABLE partitions(
   category VARCHAR(25),
   description VARCHAR(100),
   due_date INT,
-  amount_reserved DOUBLE,
-  amount_remaining DOUBLE
+  amount_reserved DECIMAL(10, 2)
 );
 
 CREATE TABLE expenses(
@@ -12,11 +11,11 @@ CREATE TABLE expenses(
   category_id INT REFERENCES partitions(partition_id),
   date DATE,
   description VARCHAR(100),
-  cost DOUBLE
+  cost DECIMAL(10, 2)
 );
 
 CREATE TABLE savings(
   savings_id INT PRIMARY KEY AUTO_INCREMENT,
   category_id INT REFERENCES partitions(partition_id),
-  amount DOUBLE
+  amount DECIMAL(10, 2)
 );

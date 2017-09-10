@@ -30,6 +30,16 @@ void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
     Connection conn { establishConnection() };
     Query query { conn.query() };
 
+    StoreQueryResult result{};
+    string entry{};
+
+    // Load monthly income
+    query << "SELECT SUM(amount) AS monthlyIncome FROM income";
+    result = { query.store() };
+    entry = { getEntry(result[0]["monthlyIncome"]) };
+    double income { Validator::validateDollarAmount(entry) };
+    fp.setMonthlyIncome(income);
+
     // Load partitions
     query << "SELECT "
           <<   "category, "
@@ -39,11 +49,9 @@ void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
           << "FROM "
           <<   "partitions";
 
-    StoreQueryResult result { query.store() };
+    result = { query.store() };
     for (size_t i = 0; i < result.num_rows(); i++)
     {
-      string entry{};
-
       entry = { getEntry(result[i]["category"]) };
       string category { Validator::validateNewCategory(entry, fp.hasPartition(entry)) };
 
@@ -76,8 +84,6 @@ void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
     result = { query.store() };
     for (size_t i = 0; i < result.num_rows(); i++)
     {
-      string entry{};
-
       entry = { getEntry(result[i]["date"]) };
       date date { Validator::validateDate(entry) };
       

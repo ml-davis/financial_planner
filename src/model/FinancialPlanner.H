@@ -15,7 +15,7 @@ class FinancialPlanner
   public:
     FinancialPlanner();
 
-    FinancialPlanner(const double monthlyIncome, const std::string& date);
+    FinancialPlanner(const std::string& date);
 
     void addPartition(const std::string& name,
                       const std::string& description,
@@ -30,6 +30,8 @@ class FinancialPlanner
     void load(const std::string& dateString);
 
     const bool hasPartition(std::string name);
+
+    void setMonthlyIncome(const double amount);
 
     const inline double getMonthlyIncome() const
     {

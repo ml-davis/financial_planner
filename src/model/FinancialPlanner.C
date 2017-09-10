@@ -8,8 +8,7 @@ FinancialPlanner::FinancialPlanner()
 {
 }
 
-FinancialPlanner::FinancialPlanner(const double monthlyIncome, const string& date)
-  : _monthlyIncome(monthlyIncome)
+FinancialPlanner::FinancialPlanner(const string& date)
 {
   // load partitions and expenses from disk
   load(date);
@@ -54,6 +53,11 @@ void FinancialPlanner::load(const string& dateString)
 const bool FinancialPlanner::hasPartition(string name)
 {
   return _partitions.find(name) != _partitions.end();
+}
+
+void FinancialPlanner::setMonthlyIncome(const double amount)
+{
+  _monthlyIncome = amount;
 }
 
 void FinancialPlanner::verifyPartitions()

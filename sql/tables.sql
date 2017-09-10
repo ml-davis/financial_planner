@@ -23,7 +23,8 @@ CREATE TABLE savings(
 CREATE TABLE income(
   income_id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(25),
+  date DATE,
   description VARCHAR(100),
-  date DATE
+  amount DECIMAL(10, 2)
 );
 

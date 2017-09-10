@@ -14,11 +14,12 @@ void printLine()
 
 View::View()
 {
-  _financialPlanner = FinancialPlanner(2852.26);
+  _financialPlanner = FinancialPlanner(2852.26, "2017-Aug-01");
 }
 
 void View::printExpenses()
 {
+  printLine();
   format fmt("%-16s%-20s%-106s%8s");
   cout << format(fmt) % "Date" % "Category" % "Description" % "Cost" << endl;
   printLine();
@@ -33,8 +34,6 @@ void View::printExpenses()
       expense.getCost() << endl;
   }
   printLine();
-
-  cout << endl;
 }
 
 void View::printRemaining()
@@ -43,6 +42,7 @@ void View::printRemaining()
   double totalRemaining{};
   double percentRemaining{};
 
+  printLine();
   format fmt("%-20s%-81s%4s%11s%11s%11s%12s");
   cout << format(fmt) % "Name" % "Description" % "Due" % "Reserved" % 
     "Spent" % "Remaining" % "Percent" << endl;
@@ -75,7 +75,5 @@ void View::printRemaining()
   cout << format(fmt) % "Total" % monthlyIncome % spent % totalRemaining % 
     (100 * (totalRemaining / monthlyIncome)) << endl;
   printLine();
-
-  cout << endl;
 }
 

@@ -15,7 +15,7 @@ class FinancialPlanner
   public:
     FinancialPlanner();
 
-    FinancialPlanner(double monthlyIncome);
+    FinancialPlanner(const double monthlyIncome, const std::string& date);
     
     void addPartition(const std::string& name,
                       const std::string& description,
@@ -27,7 +27,7 @@ class FinancialPlanner
                     const std::string& description,
                     const double amount);
 
-    void load();
+    void load(const boost::gregorian::date& date);
 
     const bool hasPartition(std::string name);
 

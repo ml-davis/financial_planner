@@ -8,11 +8,11 @@ FinancialPlanner::FinancialPlanner()
 {
 }
 
-FinancialPlanner::FinancialPlanner(double monthlyIncome)
+FinancialPlanner::FinancialPlanner(const double monthlyIncome, const string& date)
   : _monthlyIncome(monthlyIncome)
 {
   // load partitions and expenses from disk
-  load(); 
+  load(from_simple_string(date)); 
   verifyPartitions();
 }
 
@@ -35,10 +35,13 @@ void FinancialPlanner::addExpense(const date& theDate,
   _expenses.push_back(expense);
 }
 
-void FinancialPlanner::load()
+void FinancialPlanner::load(const date& date)
 {
+  int month { date.month() };
+  int year { date.year() };
+
   SqlFetcher fetcher;
-  fetcher.load(*this);
+  fetcher.load(*this, year, month);
 }
 
 const bool FinancialPlanner::hasPartition(string name)

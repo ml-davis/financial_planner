@@ -14,5 +14,5 @@ class FinancialPlanner;
 class SqlFetcher
 {
   public:
-    void load(FinancialPlanner& fp);
+    void load(FinancialPlanner& fp, const int year, const int month);
 };

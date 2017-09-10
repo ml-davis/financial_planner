@@ -23,7 +23,7 @@ string getEntry(const auto& entry)
     return string{entry.data(), entry.length()};
 }
 
-void SqlFetcher::load(FinancialPlanner& fp)
+void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
 {
   try
   {
@@ -69,7 +69,9 @@ void SqlFetcher::load(FinancialPlanner& fp)
           <<   "partitions, "
           <<   "expenses "
           << "WHERE "
-          <<   "partition_id = category_id";
+          <<   "partition_id = category_id AND "
+          <<   "YEAR(date) = "  << year << " AND "
+          <<   "MONTH(date) = " << month;
 
     result = { query.store() };
     for (size_t i = 0; i < result.num_rows(); i++)

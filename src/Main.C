@@ -9,6 +9,5 @@ int main()
 {
   View gui;
 
-  gui.printExpenses();
   gui.printRemaining();
 }

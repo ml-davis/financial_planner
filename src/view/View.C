@@ -19,8 +19,6 @@ View::View()
 
 void View::printExpenses()
 {
-  double sum{0};
-
   format fmt("%-16s%-20s%-106s%8s");
   cout << format(fmt) % "Date" % "Category" % "Description" % "Cost" << endl;
   printLine();
@@ -33,13 +31,7 @@ void View::printExpenses()
       expense.getCategory() % 
       expense.getDescription() % 
       expense.getCost() << endl;
-
-    sum += expense.getCost();
   }
-  printLine();
-
-  fmt = format("%-142s%8.2f");
-  cout << format(fmt) % "Total" % sum << endl;
   printLine();
 
   cout << endl;
@@ -47,6 +39,7 @@ void View::printExpenses()
 
 void View::printRemaining()
 {
+  double spent{};
   double totalRemaining{};
   double percentRemaining{};
 
@@ -61,6 +54,8 @@ void View::printRemaining()
       (p.second.getAmountRemaining() / p.second.getAmountReserved());
 
     totalRemaining += p.second.getAmountRemaining();
+    
+    spent += (p.second.getAmountReserved() - p.second.getAmountRemaining());
 
     fmt = format("%-20s%-81s%4s%11.2f%11.2f%11.2f%11.1f%%");
     cout << format(fmt) %
@@ -72,11 +67,12 @@ void View::printRemaining()
       p.second.getAmountRemaining() %
       percentRemaining << endl;
   }
+  
   printLine();
 
-  fmt = format("%-116s%11.2f%11.2f%11.1f%%");
+  fmt = format("%-105s%11.2f%11.2f%11.2f%11.1f%%");
   double monthlyIncome{_financialPlanner.getMonthlyIncome()};
-  cout << format(fmt) % "Total" % monthlyIncome % totalRemaining % 
+  cout << format(fmt) % "Total" % monthlyIncome % spent % totalRemaining % 
     (100 * (totalRemaining / monthlyIncome)) << endl;
   printLine();
 

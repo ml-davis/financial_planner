@@ -35,18 +35,10 @@ void FinancialPlanner::addExpense(const date& theDate,
   _expenses.push_back(expense);
 }
 
-void FinancialPlanner::save()
-{
-  IOHandler io;
-  io.savePartitions(_partitions);
-  io.saveExpenses(_expenses);
-}
-
 void FinancialPlanner::load()
 {
-  IOHandler io;
-  io.loadPartitions(*this);
-  io.loadExpenses(*this); // expenses must be loaded after partitions
+  SqlFetcher fetcher;
+  fetcher.load(*this);
 }
 
 const bool FinancialPlanner::hasPartition(string name)

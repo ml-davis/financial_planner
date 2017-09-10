@@ -2,7 +2,7 @@
 
 #include "Expense.H"
 #include "Partition.H"
-#include "IOHandler.H"
+#include "SqlFetcher.H"
 
 #include <boost/date_time/gregorian/gregorian.hpp>
 
@@ -26,8 +26,6 @@ class FinancialPlanner
                     const std::string& category,
                     const std::string& description,
                     const double amount);
-
-    void save();
 
     void load();
 

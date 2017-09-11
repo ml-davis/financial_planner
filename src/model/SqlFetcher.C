@@ -34,8 +34,21 @@ void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
     string entry{};
 
     // Load monthly income
-    query << "SELECT SUM(amount) AS monthlyIncome FROM income";
+    query << "SELECT "
+          <<   "SUM(amount) AS monthlyIncome "
+          << "FROM "
+          <<   "income "
+          << "WHERE "
+          <<   "YEAR(date) = " << year << " AND "
+          <<   "MONTH(date) = " << month;
+
     result = { query.store() };
+    if (result[0]["monthlyIncome"].is_null())
+    {
+      cout << "No results returned from income table for "
+           << year << "-" << month << endl;
+      exit(1);
+    }
     entry = { getEntry(result[0]["monthlyIncome"]) };
     double income { Validator::validateDollarAmount(entry) };
     fp.setMonthlyIncome(income);
@@ -47,9 +60,18 @@ void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
           <<   "amount_reserved, "
           <<   "due_date "
           << "FROM "
-          <<   "partitions";
+          <<   "partitions "
+          << "WHERE "
+          <<   "YEAR(date) = " << year << " AND "
+          <<   "MONTH(date) = " << month;
 
     result = { query.store() };
+    if (result.num_rows() == 0)
+    {
+      cout << "No results returned from partitions table for "
+           << year << "-" << month << endl;
+      exit(1);
+    }
     for (size_t i = 0; i < result.num_rows(); i++)
     {
       entry = { getEntry(result[i]["category"]) };
@@ -69,7 +91,7 @@ void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
 
     // Load expenses
     query << "SELECT "
-          <<   "date, "
+          <<   "expenses.date, "
           <<   "category, "
           <<   "expenses.description, "
           <<   "cost "
@@ -78,8 +100,8 @@ void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
           <<   "expenses "
           << "WHERE "
           <<   "partition_id = category_id AND "
-          <<   "YEAR(date) = "  << year << " AND "
-          <<   "MONTH(date) = " << month;
+          <<   "YEAR(expenses.date) = "  << year << " AND "
+          <<   "MONTH(expenses.date) = " << month;
 
     result = { query.store() };
     for (size_t i = 0; i < result.num_rows(); i++)

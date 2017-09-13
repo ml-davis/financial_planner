@@ -55,13 +55,15 @@ void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
 
     // Load partitions
     query << "SELECT "
-          <<   "category, "
+          <<   "name, "
           <<   "description, "
-          <<   "amount_reserved, "
+          <<   "amount, "
           <<   "due_date "
           << "FROM "
-          <<   "partitions "
+          <<   "targets, "
+          <<   "expense_types "
           << "WHERE "
+          <<   "targets.type_id = expense_types.type_id AND "
           <<   "YEAR(date) = " << year << " AND "
           <<   "MONTH(date) = " << month;
 
@@ -74,13 +76,13 @@ void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
     }
     for (size_t i = 0; i < result.num_rows(); i++)
     {
-      entry = { getEntry(result[i]["category"]) };
+      entry = { getEntry(result[i]["name"]) };
       string category { Validator::validateNewCategory(entry, fp.hasPartition(entry)) };
 
       entry = { getEntry(result[i]["description"]) };
       string description { entry };
 
-      entry = { getEntry(result[i]["amount_reserved"]) };
+      entry = { getEntry(result[i]["amount"]) };
       double amountReserved { Validator::validateDollarAmount(entry) };
 
       entry = { getEntry(result[i]["due_date"]) };
@@ -91,15 +93,15 @@ void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
 
     // Load expenses
     query << "SELECT "
-          <<   "expenses.date, "
-          <<   "category, "
-          <<   "expenses.description, "
+          <<   "date, "
+          <<   "name, "
+          <<   "expenses.description AS description, "
           <<   "cost "
           << "FROM "
-          <<   "partitions, "
-          <<   "expenses "
+          <<   "expenses, "
+          <<   "expense_types "
           << "WHERE "
-          <<   "partition_id = category_id AND "
+          <<   "expenses.type_id = expense_types.type_id AND "
           <<   "YEAR(expenses.date) = "  << year << " AND "
           <<   "MONTH(expenses.date) = " << month;
 
@@ -109,7 +111,7 @@ void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
       entry = { getEntry(result[i]["date"]) };
       date date { Validator::validateDate(entry) };
       
-      entry = { getEntry(result[i]["category"]) };
+      entry = { getEntry(result[i]["name"]) };
       string category { Validator::validateCategory(entry, fp.hasPartition(entry)) };
 
       entry = { getEntry(result[i]["description"]) };
@@ -117,7 +119,7 @@ void SqlFetcher::load(FinancialPlanner& fp, const int year, const int month)
 
       entry = { getEntry(result[i]["cost"]) };
       double cost { Validator::validateDollarAmount(entry) };
-      
+
       fp.addExpense(date, category, description, cost);
     }
   }

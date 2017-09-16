@@ -1,3 +1,6 @@
 *.swp
-run
 cscope.*
+bin/
+obj/
+*.make
+Makefile

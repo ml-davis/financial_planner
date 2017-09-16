@@ -14,7 +14,7 @@ void printLine()
 
 View::View()
 {
-  _financialPlanner = FinancialPlanner("2017-Aug-01");
+  _financialPlanner = FinancialPlanner();
 }
 
 void View::printExpenses()

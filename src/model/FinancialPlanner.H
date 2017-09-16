@@ -6,6 +6,7 @@
 
 #include <boost/date_time/gregorian/gregorian.hpp>
 
+#include <cmath>
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -14,8 +15,6 @@ class FinancialPlanner
 {
   public:
     FinancialPlanner();
-
-    FinancialPlanner(const std::string& date);
 
     void addPartition(const std::string& name,
                       const std::string& description,
@@ -26,6 +25,8 @@ class FinancialPlanner
                     const std::string& category,
                     const std::string& description,
                     const double amount);
+
+    void load(const boost::gregorian::date& date);
 
     void load(const std::string& dateString);
 

@@ -6,12 +6,9 @@ using namespace boost::gregorian;
 
 FinancialPlanner::FinancialPlanner()
 {
-}
-
-FinancialPlanner::FinancialPlanner(const string& date)
-{
   // load partitions and expenses from disk
-  load(date);
+  date current_date { day_clock::local_day() };
+  load(current_date);
   verifyPartitions();
 }
 
@@ -34,20 +31,23 @@ void FinancialPlanner::addExpense(const date& theDate,
   _expenses.push_back(expense);
 }
 
-void FinancialPlanner::load(const string& dateString)
+void FinancialPlanner::load(const date& date)
 {
   // remove all current data from "this"
   reset();
 
-  date date { from_simple_string(dateString) };
-
   // TODO: only reset if not current date
-
   int month { date.month() };
   int year { date.year() };
 
   SqlFetcher fetcher;
   fetcher.load(*this, year, month);
+}
+
+void FinancialPlanner::load(const string& dateString)
+{
+  date date { from_simple_string(dateString) };
+  load(date);
 }
 
 const bool FinancialPlanner::hasPartition(string name)
@@ -60,6 +60,14 @@ void FinancialPlanner::setMonthlyIncome(const double amount)
   _monthlyIncome = amount;
 }
 
+bool pricesMatch(double a, double b)
+{
+  int x { static_cast<int>(a * 100) };
+  int y { static_cast<int>(b * 100) };
+
+  return x == y;
+}
+
 void FinancialPlanner::verifyPartitions()
 {
   double sum = 0;
@@ -68,7 +76,7 @@ void FinancialPlanner::verifyPartitions()
     sum += p.second.getAmountReserved();
   }
 
-  if (sum != _monthlyIncome)
+  if (!pricesMatch(sum, _monthlyIncome))
   {
     cerr << "Partitioned income does not equal monthly income!\n"
       << sum << " != " << _monthlyIncome << endl;

@@ -1,0 +1,3 @@
+Note: Node-JS files left out in gitignore. To install chart.js run:
+
+npm install chart.js --save

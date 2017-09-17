@@ -8,8 +8,8 @@
   <h1>Hello World!</h1>
   <canvas id="myChart" width="1000" height="600"></canvas>
   <script>
-    var ctx = document.getElementById("myChart").getContext('2d');
-    var myChart = new Chart(ctx, {
+    const ctx = document.getElementById("myChart").getContext('2d');
+    const myChart = new Chart(ctx, {
       // many other types: bar, line, pie, etc
       type: 'bar',
       data: {

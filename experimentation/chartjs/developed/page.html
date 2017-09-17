@@ -1,0 +1,40 @@
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <script src="data.js"></script>
+  <title>Hello</title>
+</head>
+<body>
+  <h1>Hello World!</h1>
+  <canvas id="myChart" width="1000" height="600"></canvas>
+  <script>
+
+    const map = new Map([
+      ['t1',  12],
+      ['t2',  19],
+      ['t3',   3],
+      ['t4',  25],
+      ['t5',  21],
+      ['t6',   8],
+      ['t7',   7],
+      ['t8',  30],
+      ['t9',  14],
+      ['t10', 15],
+      ['t11', 18],
+      ['t12',  9],
+      ['t13', 19],
+      ['t14',  4],
+      ['t15', 10],
+      ['t16', 13],
+      ['t17', 14],
+      ['t18', 14],
+      ['t19', 14],
+      ['t20', 14]
+    ]);
+
+    loadChart('Random Data', map, 'bar');
+
+  </script>
+</body>
+</html>

@@ -14,7 +14,7 @@ void printLine()
 
 View::View()
 {
-  _financialPlanner = FinancialPlanner();
+  _financialPlanner = { FinancialPlanner() };
 }
 
 void View::printExpenses()

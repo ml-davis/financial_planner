@@ -5,12 +5,12 @@ workspace "financial_planner"
 project "run"
   kind "ConsoleApp"
   language "C++"
-  files { "**.H", "**.C" }
+  files { "src/**.H", "src/**.C" }
 
   includedirs 
   {
-    "/usr/include/mysql++",
-    "/usr/include/mysql"
+    "src/mysql++",
+    "src/mysql"
   }
 
   links

@@ -1,0 +1,5 @@
+This file opens and listens for incoming messages on a socket over port 13. When it receives a message it returns the current date and time. A simple way to test the server would be to run the netcat command:
+
+  netcat localhost 13
+
+Note: running this server requires sudo

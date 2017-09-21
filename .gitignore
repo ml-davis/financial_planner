@@ -4,6 +4,6 @@ bin/
 obj/
 *.make
 Makefile
-experimentation/*/example*
 node_modules
 package-lock.json
+experimentation/**.out

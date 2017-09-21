@@ -36,7 +36,6 @@ int main()
 
       // writing the message for current time
       boost::asio::write(socket, boost::asio::buffer(message), ignored_error);
-
     }
   }
   catch(std::exception& e)

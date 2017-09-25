@@ -6,4 +6,4 @@ obj/
 Makefile
 node_modules
 package-lock.json
-experimentation/**.out
+*.out

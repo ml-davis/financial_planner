@@ -1,8 +1,10 @@
 #include <ctime>
 #include <iostream>
 #include <string>
+
 #include <boost/asio.hpp>
 
+using namespace std;
 using boost::asio::ip::tcp;
 
 std::string make_daytime_string()
@@ -27,6 +29,7 @@ int main()
       tcp::socket socket(io_service);
 
       // wait and listen
+      cout << "Awaiting message..." << endl;
       acceptor.accept(socket);
 
       // prepare message to send back to client

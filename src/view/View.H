@@ -2,10 +2,6 @@
 
 #include <boost/format.hpp>
 
-#include <iostream>
-#include <unordered_map>
-#include <vector>
-
 class View
 {
   public:

@@ -9,8 +9,8 @@ project "run"
 
   includedirs 
   {
-    "src/mysql++",
-    "src/mysql"
+    "src/libs/mysql++",
+    "src/libs/mysql"
   }
 
   links

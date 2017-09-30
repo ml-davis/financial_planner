@@ -7,7 +7,6 @@
 #include <boost/date_time/gregorian/gregorian.hpp>
 
 #include <cmath>
-#include <iostream>
 #include <unordered_map>
 #include <vector>
 

@@ -1,12 +1,14 @@
-#include "view/View.H"
+#include "model/Communicator.H"
+
+using namespace std;
 
 int main()
 {
-  View gui;
+  Communicator communicator;
 
-  gui.changeDate("2017-Aug-01");
-  gui.printRemaining();
+  communicator.changeDate("2017-Aug-01");
+  cout << communicator.getRemaining() << endl;
 
-  gui.changeDate("2017-Sep-01");
-  gui.printRemaining();
+  communicator.changeDate("2017-Sep-01");
+  cout << communicator.getRemaining() << endl;
 }

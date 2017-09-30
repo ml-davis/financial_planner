@@ -1,7 +1,7 @@
 const net = require('net');
 
-const HOST = '127.0.0.1';
-const PORT = 13;
+const HOST = 'localhost';
+const PORT = 2020;
 
 const message = 'I am the client';
 
@@ -13,7 +13,7 @@ client.connect(PORT, HOST, function() {
 });
 
 client.on('data', function(data) {
-  console.log('Got response: ' + data + '\n');
+  console.log('Got response: \n\n' + data + '\n');
   client.destroy();
 });
 

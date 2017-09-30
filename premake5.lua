@@ -16,6 +16,8 @@ project "run"
   links
   {
     "boost_date_time",
+    "boost_system",
+    "boost_thread",
     "mysqlpp"
   }
 
@@ -26,4 +28,3 @@ project "run"
   filter "configurations:Release"
     defines { "NDEBUG" }
     optimize "On"
-

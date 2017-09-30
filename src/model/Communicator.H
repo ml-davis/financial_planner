@@ -1,3 +1,5 @@
+#pragma once
+
 #include "FinancialPlanner.H"
 #include "MessageFormatter.H"
 

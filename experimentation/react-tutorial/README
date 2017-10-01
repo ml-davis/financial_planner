@@ -1,0 +1,3 @@
+Run with npm run dev
+
+You will almost certainly need to update the IP address in package.json in scripts.dev

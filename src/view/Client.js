@@ -3,9 +3,10 @@ const net = require('net');
 const HOST = 'localhost';
 const PORT = 2020;
 
-const message = 'I am the client';
+const message = 'FETCH REMAINING';
 
 const client = new net.Socket();
+
 client.connect(PORT, HOST, function() {
   console.log('Connected to: ' + HOST + ':' + PORT + '\n');
   console.log('Sending message: ' + message);

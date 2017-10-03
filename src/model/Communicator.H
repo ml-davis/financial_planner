@@ -8,9 +8,7 @@ class Communicator
   public:
     Communicator();
 
-    std::string getExpenses();
-
-    std::string getRemaining();
+    std::string fetchData(const std::string& request);
 
     void changeDate(const std::string& date);
 

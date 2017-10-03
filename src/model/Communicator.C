@@ -7,14 +7,21 @@ Communicator::Communicator()
     _formatter{ MessageFormatter() }
 {}
 
-string Communicator::getExpenses()
+string Communicator::fetchData(const string& request)
 {
-  return _formatter.formatExpenses(_financialPlanner);
-}
-
-string Communicator::getRemaining()
-{
-  return _formatter.formatRemaining(_financialPlanner);
+  if (request == "FETCH EXPENSES")
+  {
+    return _formatter.formatExpenses(_financialPlanner);
+  }
+  else if (request == "FETCH REMAINING")
+  {
+    return _formatter.formatRemaining(_financialPlanner);
+  }
+  else
+  {
+    cout << "Received invalid message from Client" << endl;
+    exit(1);
+  }
 }
 
 void Communicator::changeDate(const string& date)

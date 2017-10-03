@@ -17,14 +17,11 @@ string readMessage(tcp::socket& socket)
 
 Server::Server()
   : _communicator{ Communicator() }
-{
-  _communicator.changeDate("2017-Aug-01");
-}
+{}
 
 void Server::run() 
 {
-  string outgoingMessage { _communicator.getRemaining() };
-  string incomingMessage {};
+  string request {};
 
   asio::io_service io_service;
   tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), 2020));
@@ -35,10 +32,11 @@ void Server::run()
     cout << "Awaiting message..." << endl;
     acceptor.accept(socket);
 
-    incomingMessage = { readMessage(socket) };
-    cout << "Received message: " <<  incomingMessage << "\n\n";;
+    request = { readMessage(socket) };
+    cout << "Received message: " <<  request << "\n\n";;
 
-    cout << "Sending message: \n\n" << outgoingMessage << "\n\n";
-    asio::write(socket, asio::buffer(outgoingMessage));
+    string response { _communicator.fetchData(request) };
+    cout << "Sending message: \n\n" << response << "\n\n";
+    asio::write(socket, asio::buffer(response));
   }
 }

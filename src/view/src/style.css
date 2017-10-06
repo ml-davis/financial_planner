@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+  font-family: Arial;
+  color: #b8babc;
+  text-shadow: 2px 1px 1px black;
+  background-color: #2b2b2b;
+}
+
+header {
+  padding-bottom: 50px;
+}
+
+footer {
+  padding-top: 50px;
+}

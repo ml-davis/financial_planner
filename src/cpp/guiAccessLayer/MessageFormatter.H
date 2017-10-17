@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../financialPlanner/FinancialPlanner.H"
+
 #include <boost/format.hpp>
 
 class MessageFormatter

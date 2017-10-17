@@ -1,4 +1,4 @@
-#include "model/Server.H"
+#include "guiAccessLayer/Server.H"
 
 int main()
 {

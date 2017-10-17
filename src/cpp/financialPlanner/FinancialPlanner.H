@@ -2,7 +2,7 @@
 
 #include "Expense.H"
 #include "Partition.H"
-#include "SqlFetcher.H"
+#include "../dataAccessLayer/SqlFetcher.H"
 
 #include <boost/date_time/gregorian/gregorian.hpp>
 

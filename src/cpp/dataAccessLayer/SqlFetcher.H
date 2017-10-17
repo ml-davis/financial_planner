@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FinancialPlanner.H"
+#include "../financialPlanner/FinancialPlanner.H"
 #include "Validator.H"
 
 #include <mysql++.h>

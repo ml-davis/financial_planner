@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FinancialPlanner.H"
+#include "../financialPlanner/FinancialPlanner.H"
 #include "MessageFormatter.H"
 
 class Communicator

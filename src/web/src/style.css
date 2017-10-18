@@ -13,3 +13,7 @@ header {
 footer {
   padding-top: 50px;
 }
+
+.mono {
+  font-family: monospace;
+}

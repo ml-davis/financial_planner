@@ -5,7 +5,8 @@ import Body from "./components/Body";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
-class Layout extends React.Component { render() {
+class Layout extends React.Component {
+  render() {
     return (
       <div>
         <Header />

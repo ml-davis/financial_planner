@@ -1,26 +1,32 @@
+import { makeRequest } from '../../api';
 import React from "react";
 
 export default class Body extends React.Component {
   
-  constructor() {
-    super();
-    this.state = {
-      display: ""
-    }
+  constructor(props) {
+    super(props);
+  }
+
+  state = {
+    display: ''
   }
 
   fetchRemaining() {
-    this.setState({ display: "Fetching remaining" });
+    makeRequest((err, display) => this.setState({
+      display
+    }), "FETCH REMAINING");
   }
 
   fetchExpenses() {
-    this.setState({ display: "Fetching expenses" });
+    makeRequest((err, display) => this.setState({
+      display
+    }), "FETCH EXPENSES");
   }
 
   render() {
     return (
       <main>
-        <textarea rows="25" cols="150" value={this.state.display}></textarea><br/>
+        <textarea rows="25" cols="157" value={this.state.display}> </textarea><br/>
         <button onClick={() => this.fetchRemaining()}>Fetch Remaining</button>
         <button onClick={() => this.fetchExpenses()}>Fetch Expenses</button>
       </main>

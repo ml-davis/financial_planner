@@ -1,5 +1,5 @@
-#include "TcpConnection.H"
-#include "TcpServer.H"
+#include "TcpConnection.h"
+#include "TcpServer.h"
 
 using boost::asio::ip::tcp;
 

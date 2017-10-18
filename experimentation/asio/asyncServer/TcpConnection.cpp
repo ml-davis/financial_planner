@@ -1,4 +1,4 @@
-#include "TcpConnection.H"
+#include "TcpConnection.h"
 
 std::string make_daytime_string()
 {

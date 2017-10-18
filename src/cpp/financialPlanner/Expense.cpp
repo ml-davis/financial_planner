@@ -1,4 +1,4 @@
-#include "Expense.H"
+#include <financialPlanner/Expense.h>
 
 using namespace std;
 using namespace boost::gregorian;

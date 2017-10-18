@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../financialPlanner/FinancialPlanner.H"
+#include <financialPlanner/FinancialPlanner.h>
 
 #include <boost/format.hpp>
 

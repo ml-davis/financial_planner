@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Communicator.H"
+#include <guiAccessLayer/Communicator.h>
 
 #include <boost/asio.hpp>
 

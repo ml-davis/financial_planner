@@ -1,4 +1,4 @@
-#include "MessageFormatter.H"
+#include <guiAccessLayer/MessageFormatter.h>
 
 using namespace std;
 using namespace boost;

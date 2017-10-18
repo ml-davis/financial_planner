@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Expense.H"
-#include "Partition.H"
-#include "../dataAccessLayer/SqlFetcher.H"
+#include <financialPlanner/Expense.h>
+#include <financialPlanner/Partition.h>
+#include <dataAccessLayer/SqlFetcher.h>
 
 #include <boost/date_time/gregorian/gregorian.hpp>
 

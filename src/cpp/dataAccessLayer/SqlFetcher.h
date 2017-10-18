@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../financialPlanner/FinancialPlanner.H"
-#include "Validator.H"
+#include <financialPlanner/FinancialPlanner.h>
+#include <dataAccessLayer/Validator.h>
 
 #include <mysql++.h>
 

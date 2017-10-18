@@ -1,4 +1,4 @@
-#include "Communicator.H"
+#include <guiAccessLayer/Communicator.h>
 
 using namespace std;
 

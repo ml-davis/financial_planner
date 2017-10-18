@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../financialPlanner/FinancialPlanner.H"
-#include "MessageFormatter.H"
+#include <financialPlanner/FinancialPlanner.h>
+#include <guiAccessLayer/MessageFormatter.h>
 
 class Communicator
 {

@@ -33,7 +33,7 @@ void FinancialPlanner::addExpense(const date& theDate,
 
 void FinancialPlanner::load(const date& date)
 {
-  // remove all current data from "this"
+  // clear partitions and expenses
   reset();
 
   // TODO: only reset if not current date

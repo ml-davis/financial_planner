@@ -7,6 +7,7 @@
 class MessageFormatter
 {
   public:
+    std::string formatExpenseTypes(const FinancialPlanner& financialPlanner);
     std::string formatExpenses(const FinancialPlanner& financialPlanner);
     std::string formatRemaining(const FinancialPlanner& financialPlanner);
 };

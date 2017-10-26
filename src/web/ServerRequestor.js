@@ -3,9 +3,9 @@ const net = require('net');
 const HOST = 'localhost';
 const PORT = 2020;
 
-const message = 'FETCH REMAINING';
-
 const client = new net.Socket();
+
+const message = 'FETCH EXPENSE_TYPES';
 
 client.connect(PORT, HOST, function() {
   console.log('Connected to: ' + HOST + ':' + PORT + '\n');
@@ -21,3 +21,4 @@ client.on('data', function(data) {
 client.on('close', function() {
   console.log('Connection closed');
 });
+

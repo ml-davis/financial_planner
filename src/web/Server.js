@@ -9,23 +9,21 @@ const JS_PORT = 8000;
 io.on('connection', (jsClient) => {
   jsClient.on('makeRequest', (request) => {
 
-    console.log("HELLO WORLD");
-
     const cppClient = new net.Socket();
-    
-    cppClient.connect(CPP_PORT, HOST, function() {
+
+    cppClient.connect(CPP_PORT, HOST, () => {
       console.log('Connected to: ' + HOST + ':' + CPP_PORT + '\n');
       console.log('Sending request: ' + request);
       cppClient.write(request + '#');
     });
 
-    cppClient.on('data', function(data) {
+    cppClient.on('data', (data) => {
       console.log('Got response: \n\n' + data + '\n');
       jsClient.emit('response', String.fromCharCode.apply(null, new Uint16Array(data)));
       cppClient.destroy();
     });
 
-    cppClient.on('close', function() {
+    cppClient.on('close', () => {
       console.log('Connection closed');
     });
 

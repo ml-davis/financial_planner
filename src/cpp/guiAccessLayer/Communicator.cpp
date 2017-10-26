@@ -9,7 +9,11 @@ Communicator::Communicator()
 
 string Communicator::fetchData(const string& request)
 {
-  if (request == "FETCH EXPENSES")
+  if (request == "FETCH EXPENSE_TYPES")
+  {
+    return _formatter.formatExpenseTypes(_financialPlanner);
+  }
+  else if (request == "FETCH EXPENSES")
   {
     return _formatter.formatExpenses(_financialPlanner);
   }

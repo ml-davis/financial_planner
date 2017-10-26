@@ -15,6 +15,25 @@ string getLine()
   return ss.str();
 }
 
+string MessageFormatter::formatExpenseTypes(const FinancialPlanner& financialPlanner)
+{
+  stringstream ss;
+  int count = 0;
+
+  ss << "{\n  \"expenseTypes\": [ ";
+  for (auto p : financialPlanner.getPartitions())
+  {
+    ss << "\"" << p.first << "\"";
+    if (++count < financialPlanner.getPartitions().size())
+    {
+      ss << ", ";
+    }
+  }
+  ss << " ]\n}";
+
+  return ss.str();
+}
+
 string MessageFormatter::formatExpenses(const FinancialPlanner& financialPlanner)
 {
   stringstream ss;
@@ -27,10 +46,10 @@ string MessageFormatter::formatExpenses(const FinancialPlanner& financialPlanner
   for (auto expense : financialPlanner.getExpenses())
   {
     fmt = format("%-16s%-20s%-106s%8.2f");
-    ss << format(fmt) % 
-      expense.getDateString() % 
-      expense.getCategory() % 
-      expense.getDescription() % 
+    ss << format(fmt) %
+      expense.getDateString() %
+      expense.getCategory() %
+      expense.getDescription() %
       expense.getCost() << "\n";
   }
   ss << getLine();
@@ -48,17 +67,17 @@ string MessageFormatter::formatRemaining(const FinancialPlanner& financialPlanne
 
   ss << getLine();
   format fmt("%-20s%-81s%4s%11s%11s%11s%12s");
-  ss << format(fmt) % "Name" % "Description" % "Due" % "Reserved" % 
+  ss << format(fmt) % "Name" % "Description" % "Due" % "Reserved" %
     "Spent" % "Remaining" % "Percent" << "\n";
   ss << getLine();
 
   for (auto p : financialPlanner.getPartitions())
   {
-    percentRemaining = 100 * 
+    percentRemaining = 100 *
       (p.second.getAmountRemaining() / p.second.getAmountReserved());
 
     totalRemaining += p.second.getAmountRemaining();
-    
+
     spent += (p.second.getAmountReserved() - p.second.getAmountRemaining());
 
     fmt = format("%-20s%-81s%4s%11.2f%11.2f%11.2f%11.1f%%");
@@ -71,12 +90,12 @@ string MessageFormatter::formatRemaining(const FinancialPlanner& financialPlanne
       p.second.getAmountRemaining() %
       percentRemaining << "\n";
   }
-  
+
   ss << getLine();
 
   fmt = format("%-105s%11.2f%11.2f%11.2f%11.1f%%");
   double monthlyIncome{financialPlanner.getMonthlyIncome()};
-  ss << format(fmt) % "Total" % monthlyIncome % spent % totalRemaining % 
+  ss << format(fmt) % "Total" % monthlyIncome % spent % totalRemaining %
     (100 * (totalRemaining / monthlyIncome)) << "\n";
   ss << getLine();
 

@@ -17,3 +17,25 @@ footer {
 .mono {
   font-family: monospace;
 }
+
+input#date {
+  width: 70px;
+}
+
+input#category {
+  width: 155px;
+}
+
+input#description {
+  width: 720px;
+}
+
+input#cost {
+  width: 70px;
+  text-align: right;
+}
+
+button#delete {
+  margin-left: 5px;
+  background-color: darkred;
+}

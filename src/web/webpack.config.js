@@ -1,9 +1,9 @@
 const webpack = require('webpack');
 
 module.exports = {
-  context: __dirname + "/src",
+  context: __dirname,
   devtool: "inline-sourcemap",
-  entry: "./js/client.js",
+  entry: "./view/js/Index.js",
   module: {
     loaders: [
       {
@@ -18,7 +18,7 @@ module.exports = {
     ]
   },
   output: {
-    path: __dirname + "/src",
+    path: __dirname + "/view/js",
     filename: "client.min.js"
   },
   plugins: []

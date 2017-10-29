@@ -1,7 +1,7 @@
-import { makeRequest } from '../../api';
+import { makeRequest } from '../../../../serverRequestor';
 import React from "react";
 
-export default class Page1 extends React.Component {
+export default class Home extends React.Component {
 
   constructor(props) {
     super(props);

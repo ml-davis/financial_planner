@@ -4,7 +4,7 @@
   "description": "A simple application to help me learn the basics of react",
   "main": "webpack.config.js",
   "scripts": {
-    "dev": "./node_modules/.bin/webpack-dev-server --content-base src --host 192.168.0.109",
+    "dev": "./node_modules/.bin/webpack-dev-server --content-base view --host 192.168.0.109",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matthew Davis",

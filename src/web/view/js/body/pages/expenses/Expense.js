@@ -12,7 +12,7 @@ export default class Expense extends React.Component {
        <input type="text" id="category" defaultValue={this.props.category} />
        <input type="text" id="description" defaultValue={this.props.description} />
        <input type="text" id="cost" defaultValue={this.props.cost} />
-       <button id="delete">X</button>
+       <button class="delete">X</button>
      </div>
    )
   }

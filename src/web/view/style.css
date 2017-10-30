@@ -46,7 +46,19 @@ input#cost {
   text-align: right;
 }
 
-button#delete {
+button.delete {
   margin-left: 5px;
   background-color: darkred;
+}
+
+button#addExpense {
+  margin-top: 3px;
+  width: 1062px;
+  background-color: #2B2B2B;
+  color: #b8babc;
+  font-weight: bold;
+}
+
+button#submitExpenses {
+  margin-top: 25px;
 }

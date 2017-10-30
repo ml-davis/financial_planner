@@ -45,6 +45,8 @@ export default class Expenses extends React.Component {
     return (
       <div>
         {Expenses.renderExpenses()}
+        <button id="addExpense" onClick={this.addExpense}>+</button>
+        <button id="submitExpenses">Submit</button>
       </div>
     );
   }

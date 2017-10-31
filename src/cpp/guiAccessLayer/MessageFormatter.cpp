@@ -18,7 +18,7 @@ string getLine()
 string MessageFormatter::formatExpenseTypes(const FinancialPlanner& financialPlanner)
 {
   stringstream ss;
-  int count = 0;
+  int count {};
 
   ss << "{\n  \"expenseTypes\": [ ";
   for (auto p : financialPlanner.getPartitions())
@@ -37,25 +37,49 @@ string MessageFormatter::formatExpenseTypes(const FinancialPlanner& financialPla
 string MessageFormatter::formatExpenses(const FinancialPlanner& financialPlanner)
 {
   stringstream ss;
-  ss << getLine();
+  int count {};
 
-  format fmt("%-16s%-20s%-106s%8s");
-  ss << format(fmt) % "Date" % "Category" % "Description" % "Cost" << "\n";
-  ss << getLine();
-
-  for (auto expense : financialPlanner.getExpenses())
+  ss << "{\n  \"expenses\": [";
+  for (auto expense: financialPlanner.getExpenses())
   {
-    fmt = format("%-16s%-20s%-106s%8.2f");
-    ss << format(fmt) %
-      expense.getDateString() %
-      expense.getCategory() %
-      expense.getDescription() %
-      expense.getCost() << "\n";
+    ss << "{\n";
+    ss << "    \"date\": \"" << expense.getDateString() << "\",\n";
+    ss << "    \"category\": \"" << expense.getCategory() << "\",\n";
+    ss << "    \"description\": \"" << expense.getDescription() << "\",\n";
+    ss << "    \"cost\": \"" << expense.getCost() << "\"\n";
+    ss << "  }";
+    if (++count < financialPlanner.getExpenses().size())
+    {
+      ss << ", ";
+    }
   }
-  ss << getLine();
+  ss << "]\n}";
 
   return ss.str();
 }
+
+//string MessageFormatter::formatExpenses(const FinancialPlanner& financialPlanner)
+//{
+//  stringstream ss;
+//  ss << getLine();
+//
+//  format fmt("%-16s%-20s%-106s%8s");
+//  ss << format(fmt) % "Date" % "Category" % "Description" % "Cost" << "\n";
+//  ss << getLine();
+//
+//  for (auto expense : financialPlanner.getExpenses())
+//  {
+//    fmt = format("%-16s%-20s%-106s%8.2f");
+//    ss << format(fmt) %
+//      expense.getDateString() %
+//      expense.getCategory() %
+//      expense.getDescription() %
+//      expense.getCost() << "\n";
+//  }
+//  ss << getLine();
+//
+//  return ss.str();
+//}
 
 string MessageFormatter::formatRemaining(const FinancialPlanner& financialPlanner)
 {

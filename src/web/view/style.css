@@ -30,7 +30,7 @@ footer {
 }
 
 input#date {
-  width: 70px;
+  width: 80px;
 }
 
 input#category {
@@ -53,7 +53,7 @@ button.delete {
 
 button#addExpense {
   margin-top: 3px;
-  width: 1062px;
+  width: 1072px;
   background-color: #2B2B2B;
   color: #b8babc;
   font-weight: bold;

@@ -7,7 +7,7 @@ export default class Expense extends React.Component {
 
  render() {
    return (
-     <div id="expenses">
+     <div id="expense">
        <input type="text" id="date" defaultValue={this.props.date} />
        <input type="text" id="category" defaultValue={this.props.category} />
        <input type="text" id="description" defaultValue={this.props.description} />
